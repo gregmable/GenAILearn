@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1 Pega GenAI Architecture Patterns | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body class="page-phase3">
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo">P</div>
+        <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="index.html#phase1">Phase 1</a></li>
+        <li><a href="index.html#phase2">Phase 2</a></li>
+        <li><a href="index.html#phase3">Phase 3</a></li>
+    </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / <a href="index.html#phase3">Phase 3</a> / 3.1</div>
+    <div class="page-hero phase3">
+      <div class="hero-badge">Objective 3.1 &middot; ~3h</div>
+      <h1>Pega GenAI Architecture Patterns</h1>
+      <p>Design production GenAI architectures using Pega&rsquo;s 4-layer reference model. Understand where each component fits and how to compose them for complex enterprise use cases.</p>
+    </div>
+    <div class="page-layout">
+      <div class="sidebar-card">
+<h3>Phase 3 Directory</h3>
+<div class="directory-section-label">Objectives</div>
+<a class="directory-link current" href="phase3-1.html">3.1 · Pega GenAI Architecture Patterns</a>
+<a class="directory-link" href="phase3-2.html">3.2 · Deep Dive: Pega GenAI Product Suite</a>
+<a class="directory-link" href="phase3-3.html">3.3 · LLM Integration Paths &amp; On-Premises Options</a>
+<a class="directory-link" href="phase3-4.html">3.4 · Multi-Agent Systems &amp; AgentX Framework</a>
+<a class="directory-link" href="phase3-5.html">3.5 · GenAI Connect: Configuration &amp; Walkthrough</a>
+<a class="directory-link" href="phase3-6.html">3.6 · CoE Best Practices &amp; Enterprise Governance</a>
+<a class="directory-link" href="phase3-7.html">3.7 · Production Deployment &amp; Enablement Requirements</a>
+<div class="directory-section-label">Assessment</div>
+<a class="directory-link" href="phase3-quiz.html" data-quiz-link="phase3">Phase 3 Quiz</a>
+</div>
+      <div class="page-detail">
+        <!-- 3.1 -->
+		<div class="obj-card">
+			<div class="obj-card-header">
+				<span class="obj-num-badge">3.1</span>
+				<h3>Pega GenAI Architecture Patterns</h3>
+				<span class="duration">~3h</span>
+			</div>
+			<div class="obj-card-body">
+				<p class="obj-desc">Design production GenAI architectures using Pega&rsquo;s 4-layer reference model. Understand where each component fits and how to compose them for complex enterprise use cases.</p>
+				<div class="two-col">
+					<div>
+						<div class="arch-layers">
+							<div class="arch-layer al1">
+								<div class="arch-label">Layer 4 &mdash; Presentation</div>
+								<div class="arch-val">Pega App UI, Portals, Chatbot, API consumers</div>
+								<div class="arch-desc">User-facing touchpoints</div>
+							</div>
+							<div class="arch-layer al2">
+								<div class="arch-label">Layer 3 &mdash; Orchestration</div>
+								<div class="arch-val">AgentX, Autopilot, Case/Process Flows</div>
+								<div class="arch-desc">Multi-step reasoning &amp; routing</div>
+							</div>
+							<div class="arch-layer al3">
+								<div class="arch-label">Layer 2 &mdash; Integration</div>
+								<div class="arch-val">GenAI Connect, Gateway, MCP Servers</div>
+								<div class="arch-desc">Secure LLM routing &amp; tool access</div>
+							</div>
+							<div class="arch-layer al4">
+								<div class="arch-label">Layer 1 &mdash; Foundation</div>
+								<div class="arch-val">LLMs (Azure/Google/Anthropic), Vector Store, Prem.ai</div>
+								<div class="arch-desc">Model &amp; data layer</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="resource-group">
+							<div class="resource-source">Key Architecture Building Blocks</div>
+							<ul class="feature-list">
+								<li><strong>API Gateway</strong> &mdash; single entry point, auth, rate limiting</li>
+								<li><strong>Vector Knowledge Store</strong> &mdash; semantic retrieval layer</li>
+								<li><strong>Autopilot Engine</strong> &mdash; AI-driven workflow orchestration</li>
+								<li><strong>AgentX Runtime</strong> &mdash; multi-agent execution environment</li>
+								<li><strong>Prem.ai PremBridge</strong> &mdash; on-premises LLM connectivity</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Topic Guide</div>
+			<h2>Reference Architectures Create Repeatable Delivery</h2>
+			<p>Architecture patterns matter because most GenAI failures are not model failures alone; they are composition failures. Teams combine UI, orchestration, retrieval, tool access, identity, and model calls in inconsistent ways and then struggle to govern or scale them. A reference architecture gives builders a shared blueprint for where responsibilities live, which components can change independently, and how to keep user experience, control logic, and model infrastructure loosely coupled.</p>
+			<p>Pega's layered view is useful because it aligns technical boundaries to business delivery concerns. Presentation handles user interactions. Orchestration coordinates steps and decisions. Integration manages connections to tools and models. Foundation hosts the underlying models and knowledge systems. Once those boundaries are clear, architects can reason more effectively about latency, resilience, security, and reuse across multiple AI-enabled workflows.</p>
+			<ul class="feature-list mt1">
+				<li><strong>Separation of concerns</strong> keeps UI, orchestration, and model infrastructure from becoming tightly entangled.</li>
+				<li><strong>Reuse</strong> increases when common services such as retrieval or tool access sit in shared layers.</li>
+				<li><strong>Governance</strong> improves because ownership and controls can be assigned at each architectural boundary.</li>
+				<li><strong>Scalability</strong> improves because one pattern can support many AI use cases instead of one-off designs.</li>
+			</ul>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Architecture View</div>
+			<h2>Reference Pattern: Assisted Service Workflow</h2>
+			<div class="arch-layers mt1">
+				<div class="arch-layer al1">
+					<div class="arch-label">Presentation Layer</div>
+					<div class="arch-val">CSR portal, manager dashboard, customer chat entry point</div>
+					<div class="arch-desc">Captures requests and shows summaries, recommendations, and approvals</div>
+				</div>
+				<div class="arch-layer al2">
+					<div class="arch-label">Orchestration Layer</div>
+					<div class="arch-val">Case flow, AgentX coordinator, approval steps, escalation logic</div>
+					<div class="arch-desc">Decides when to draft, retrieve, route, or pause for human review</div>
+				</div>
+				<div class="arch-layer al3">
+					<div class="arch-label">Integration Layer</div>
+					<div class="arch-val">GenAI Connect, MCP tools, CRM APIs, knowledge connectors</div>
+					<div class="arch-desc">Supplies context and controlled actions to the workflow</div>
+				</div>
+				<div class="arch-layer al4">
+					<div class="arch-label">Foundation Layer</div>
+					<div class="arch-val">LLM provider, vector store, policy documents, telemetry store</div>
+					<div class="arch-desc">Hosts the model and enterprise knowledge base behind the workflow</div>
+				</div>
+			</div>
+			<div class="highlight mt1">
+				<strong>Architecture lesson:</strong> the workflow remains stable even if the model provider changes because the model is just one dependency inside the foundation layer rather than the center of the whole solution.
+			</div>
+		</div>
+        <div class="pager"><a class="btn btn-outline" href="phase2-quiz.html">&larr; Previous</a><a class="btn btn-primary" href="phase3-2.html">Next &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+    <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

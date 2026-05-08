@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.4 Retrieval-Augmented Generation (RAG) | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body class="page-phase1">
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo">P</div>
+        <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="index.html#phase1">Phase 1</a></li>
+        <li><a href="index.html#phase2">Phase 2</a></li>
+        <li><a href="index.html#phase3">Phase 3</a></li>
+    </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / <a href="index.html#phase1">Phase 1</a> / 1.4</div>
+    <div class="page-hero phase1">
+      <div class="hero-badge">Objective 1.4 &middot; ~3h</div>
+      <h1>Retrieval-Augmented Generation (RAG)</h1>
+      <p>Understand how RAG grounds LLM responses in enterprise knowledge. Learn vector embeddings, semantic search, and how Pega&rsquo;s Knowledge Buddy and Vector Knowledge Store implement RAG natively.</p>
+    </div>
+    <div class="page-layout">
+      <div class="sidebar-card">
+<h3>Phase 1 Directory</h3>
+<div class="directory-section-label">Objectives</div>
+<a class="directory-link" href="phase1-1.html">1.1 · GenAI Fundamentals &amp; Pega's AI Vision</a>
+<a class="directory-link" href="phase1-2.html">1.2 · Large Language Models (LLMs) &amp; Architecture</a>
+<a class="directory-link" href="phase1-3.html">1.3 · Prompt Engineering Fundamentals</a>
+<a class="directory-link current" href="phase1-4.html">1.4 · Retrieval-Augmented Generation (RAG)</a>
+<a class="directory-link" href="phase1-5.html">1.5 · Pega GenAI Product Portfolio Overview</a>
+<a class="directory-link" href="phase1-6.html">1.6 · AI Ethics, Governance &amp; Responsible AI</a>
+<div class="directory-section-label">Assessment</div>
+<a class="directory-link" href="phase1-quiz.html" data-quiz-link="phase1">Phase 1 Quiz</a>
+</div>
+      <div class="page-detail">
+        <!-- 1.4 -->
+		<div class="obj-card">
+			<div class="obj-card-header">
+				<span class="obj-num-badge">1.4</span>
+				<h3>Retrieval-Augmented Generation (RAG)</h3>
+				<span class="duration">~3h</span>
+			</div>
+			<div class="obj-card-body">
+				<p class="obj-desc">Understand how RAG grounds LLM responses in enterprise knowledge. Learn vector embeddings, semantic search, and how Pega&rsquo;s Knowledge Buddy and Vector Knowledge Store implement RAG natively.</p>
+				<div class="flow-steps">
+					<div class="flow-step">
+						<div class="flow-num">1</div>
+						<h4>Ingest</h4>
+						<p>Upload docs to Knowledge Buddy / Vector Store</p>
+					</div>
+					<div class="flow-step">
+						<div class="flow-num">2</div>
+						<h4>Embed</h4>
+						<p>Generate vector embeddings (e.g., text-embedding-ada-002)</p>
+					</div>
+					<div class="flow-step">
+						<div class="flow-num">3</div>
+						<h4>Retrieve</h4>
+						<p>Semantic search matches query to relevant chunks</p>
+					</div>
+					<div class="flow-step">
+						<div class="flow-num">4</div>
+						<h4>Generate</h4>
+						<p>LLM synthesizes grounded response with citations</p>
+					</div>
+				</div>
+				<div class="highlight">
+					<strong>Pega Knowledge Buddy</strong> provides a no-code RAG interface. Documents are ingested, chunked, and stored in Pega&rsquo;s Vector Knowledge Store. Agents can query it natively via the GenAI Connect framework.
+				</div>
+			</div>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Topic Guide</div>
+			<h2>Why RAG Matters in Enterprise AI</h2>
+			<p>Retrieval-augmented generation improves answer quality by separating knowledge storage from language generation. Instead of expecting the model to memorize current enterprise content, a RAG pipeline retrieves relevant passages at runtime and inserts them into the prompt. The model then answers using that context. This gives teams a practical way to keep answers current without retraining every time a policy, product, or document changes.</p>
+			<p>The quality of a RAG system depends on more than just the model. Document chunking, metadata strategy, embedding quality, retrieval tuning, citation handling, and evaluation all influence whether users trust the output. In Pega, Knowledge Buddy and the Vector Knowledge Store handle much of the plumbing, but architects still need to decide what content belongs in the index, how access should be enforced, and what fallback behavior should happen when retrieval is weak.</p>
+			<ul class="feature-list mt1">
+				<li><strong>Embeddings</strong> convert content into vectors that support semantic lookup.</li>
+				<li><strong>Retrieval</strong> finds the most relevant chunks for a user's question.</li>
+				<li><strong>Generation</strong> synthesizes a response from the retrieved evidence.</li>
+				<li><strong>Trust</strong> increases when the answer includes sources and stays grounded in indexed content.</li>
+			</ul>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Worked Example</div>
+			<h2>RAG Example: HR Policy Assistant</h2>
+			<p>Imagine an employee asks, "How many days of parental leave do I get in the UK?" A plain LLM might answer from general internet patterns and produce something plausible but wrong. A RAG-enabled assistant instead searches the company's latest HR policy documents, retrieves the exact parental leave section, and uses that text as source context before generating the answer.</p>
+			<div class="flow-steps mt1">
+				<div class="flow-step">
+					<div class="flow-num">1</div>
+					<h4>User Ask</h4>
+					<p>Employee asks a policy question in natural language.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">2</div>
+					<h4>Search</h4>
+					<p>Vector search finds the best-matching HR policy chunks.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">3</div>
+					<h4>Ground</h4>
+					<p>The model receives the retrieved text plus the user question.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">4</div>
+					<h4>Answer</h4>
+					<p>The response cites the policy and avoids inventing unsupported rules.</p>
+				</div>
+			</div>
+			<div class="highlight">
+				<strong>Design lesson:</strong> the model is still generating the wording, but the enterprise system controls the knowledge boundary. That is the practical reason RAG improves trust for policy, support, and knowledge-assistant use cases.
+			</div>
+		</div>
+        <div class="pager"><a class="btn btn-outline" href="phase1-3.html">&larr; Previous</a><a class="btn btn-primary" href="phase1-5.html">Next &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+    <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

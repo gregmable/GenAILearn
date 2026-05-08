@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glossary | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">P</div>
+    <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Overview</a></li>
+    <li><a href="index.html#phase1">Phase 1</a></li>
+    <li><a href="index.html#phase2">Phase 2</a></li>
+    <li><a href="index.html#phase3">Phase 3</a></li>
+  </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / Glossary</div>
+    <div class="page-hero">
+      <div class="hero-badge">Reference</div>
+      <h1>Glossary</h1>
+      <p>Key terms and abbreviations used throughout the GenAI Learning Path. Click any card to read its definition.</p>
+    </div>
+
+    <div class="glossary-grid">
+
+      <div class="glossary-item">
+        <div class="glossary-term">Generative AI <span class="glossary-abbr">GenAI</span></div>
+        <div class="glossary-def">A class of AI models that can generate new content — text, images, code, audio — by learning the statistical patterns of training data. Examples include GPT-4 and Gemini.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Analytical AI</div>
+        <div class="glossary-def">Traditional ML models that classify, predict, or score existing data rather than generating new content. Pega's Next-Best-Action and propensity models are Analytical AI.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Large Language Model <span class="glossary-abbr">LLM</span></div>
+        <div class="glossary-def">A deep neural network trained on massive text corpora to understand and generate human language. LLMs power most modern GenAI products.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Token</div>
+        <div class="glossary-def">The basic unit of text an LLM processes — roughly one word or ~4 characters. Both prompt and response text consume tokens, and model limits are expressed in token counts.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Context Window</div>
+        <div class="glossary-def">The maximum number of tokens an LLM can "see" at once — both input and output combined. Content outside this window is invisible to the model during a given call.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Fine-tuning</div>
+        <div class="glossary-def">Continued training of a pre-trained LLM on a curated, domain-specific dataset to shift its behavior — improving accuracy on narrow tasks at a lower inference cost than prompt engineering.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Retrieval-Augmented Generation <span class="glossary-abbr">RAG</span></div>
+        <div class="glossary-def">A pattern where relevant documents are retrieved from a knowledge store and injected into the LLM prompt at query time, grounding the response in authoritative content without retraining.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Vector Embedding</div>
+        <div class="glossary-def">A dense numeric representation of a piece of text (or image) in high-dimensional space, where semantically similar items cluster together. The foundation of semantic search and RAG retrieval.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Prompt Engineering</div>
+        <div class="glossary-def">The practice of designing and iterating on the text input to an LLM — including system instructions, few-shot examples, and chain-of-thought cues — to achieve reliable, high-quality outputs.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Hallucination</div>
+        <div class="glossary-def">When an LLM generates confident-sounding but factually incorrect or fabricated information. Mitigated through RAG grounding, temperature reduction, and output validation.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Temperature</div>
+        <div class="glossary-def">A sampling parameter (0–2) that controls output randomness. Lower values produce more deterministic, focused responses; higher values increase creativity and variability.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Reinforcement Learning from Human Feedback <span class="glossary-abbr">RLHF</span></div>
+        <div class="glossary-def">A training technique that uses human preference rankings to fine-tune LLM behavior, steering models toward helpful, harmless, and honest responses.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Model Context Protocol <span class="glossary-abbr">MCP</span></div>
+        <div class="glossary-def">Anthropic's open standard for connecting AI agents to external tools, data sources, and APIs via a uniform interface — enabling agents to act across enterprise systems.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Agent-to-Agent Protocol <span class="glossary-abbr">A2A</span></div>
+        <div class="glossary-def">Google's open protocol enabling independent AI agents built on different frameworks to communicate, delegate tasks, and collaborate in multi-agent workflows.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Prompt Injection</div>
+        <div class="glossary-def">An adversarial attack where malicious text in the environment (e.g., a web page or document) overrides the original system instructions and hijacks the agent's behavior.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Human-in-the-Loop <span class="glossary-abbr">HITL</span></div>
+        <div class="glossary-def">A governance pattern requiring human review or approval before an AI agent executes a consequential action, providing an override checkpoint for high-risk steps.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Chunking</div>
+        <div class="glossary-def">The process of splitting large documents into smaller text segments before embedding, balancing retrieval granularity against context completeness in a RAG pipeline.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Semantic Cache</div>
+        <div class="glossary-def">A cache layer that stores LLM responses keyed by the semantic meaning of the query (not exact text). Similar future queries hit the cache, reducing latency and API cost.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Faithfulness / Groundedness</div>
+        <div class="glossary-def">RAG quality metrics: faithfulness measures whether the generated answer is fully supported by the retrieved context; groundedness measures whether every claim can be traced to a source.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">PremBridge</div>
+        <div class="glossary-def">Pega's secure hybrid gateway that routes LLM API calls through on-premises infrastructure, keeping sensitive data inside the enterprise perimeter while still using cloud-hosted models.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Knowledge Buddy</div>
+        <div class="glossary-def">Pega's enterprise RAG product — indexes internal documents and knowledge bases, then surfaces grounded answers via a chat-style interface embedded in Pega applications.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Blueprint</div>
+        <div class="glossary-def">Pega's AI-powered case design tool that translates natural language intent into a structured case type, data model, and process skeleton, dramatically accelerating low-code development.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Autopilot</div>
+        <div class="glossary-def">Pega's agentic development feature that autonomously generates and modifies application rules in App Studio based on conversational instructions, enabling continuous AI-driven refinement.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">Center of Excellence <span class="glossary-abbr">CoE</span></div>
+        <div class="glossary-def">A cross-functional team (enterprise architects, data scientists, risk/compliance, product owners) that defines AI standards, governs model adoption, and enables GenAI scaling across the organisation.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">AgentX</div>
+        <div class="glossary-def">Pega's multi-agent orchestration framework — routes tasks to specialised sub-agents, manages tool invocations via MCP, and enforces HITL guardrails inside Pega workflows.</div>
+      </div>
+
+    </div><!-- /glossary-grid -->
+  </div>
+</main>
+<footer class="page-shell-footer">
+  <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+  Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+  <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

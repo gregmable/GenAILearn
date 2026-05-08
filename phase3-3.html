@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.3 LLM Integration Paths &amp; On-Premises Options | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body class="page-phase3">
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo">P</div>
+        <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="index.html#phase1">Phase 1</a></li>
+        <li><a href="index.html#phase2">Phase 2</a></li>
+        <li><a href="index.html#phase3">Phase 3</a></li>
+    </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / <a href="index.html#phase3">Phase 3</a> / 3.3</div>
+    <div class="page-hero phase3">
+      <div class="hero-badge">Objective 3.3 &middot; ~2.5h</div>
+      <h1>LLM Integration Paths &amp; On-Premises Options</h1>
+      <p>Select and implement the right LLM integration path for your deployment. Compare GenAI Gateway, Model Override, and third-party integrations. Understand Prem.ai PremBridge for air-gapped deployments.</p>
+    </div>
+    <div class="page-layout">
+      <div class="sidebar-card">
+<h3>Phase 3 Directory</h3>
+<div class="directory-section-label">Objectives</div>
+<a class="directory-link" href="phase3-1.html">3.1 · Pega GenAI Architecture Patterns</a>
+<a class="directory-link" href="phase3-2.html">3.2 · Deep Dive: Pega GenAI Product Suite</a>
+<a class="directory-link current" href="phase3-3.html">3.3 · LLM Integration Paths &amp; On-Premises Options</a>
+<a class="directory-link" href="phase3-4.html">3.4 · Multi-Agent Systems &amp; AgentX Framework</a>
+<a class="directory-link" href="phase3-5.html">3.5 · GenAI Connect: Configuration &amp; Walkthrough</a>
+<a class="directory-link" href="phase3-6.html">3.6 · CoE Best Practices &amp; Enterprise Governance</a>
+<a class="directory-link" href="phase3-7.html">3.7 · Production Deployment &amp; Enablement Requirements</a>
+<div class="directory-section-label">Assessment</div>
+<a class="directory-link" href="phase3-quiz.html" data-quiz-link="phase3">Phase 3 Quiz</a>
+</div>
+      <div class="page-detail">
+        <!-- 3.3 -->
+		<div class="obj-card">
+			<div class="obj-card-header">
+				<span class="obj-num-badge">3.3</span>
+				<h3>LLM Integration Paths &amp; On-Premises Options</h3>
+				<span class="duration">~2.5h</span>
+			</div>
+			<div class="obj-card-body">
+				<p class="obj-desc">Select and implement the right LLM integration path for your deployment. Compare GenAI Gateway, Model Override, and third-party integrations. Understand Prem.ai PremBridge for air-gapped deployments.</p>
+				<div class="three-col mt1">
+					<div class="card">
+						<h3>&#9989; Path 1: GenAI Gateway</h3>
+						<p><span class="badge-g badge">Recommended</span></p>
+						<p style="margin-top:0.75rem;font-size:0.85rem;color:var(--pega-muted);">Configure via Pega App Studio. Supports all major cloud LLMs. Handles auth, routing, rate limits, and token tracking automatically. <strong>Available now.</strong></p>
+					</div>
+					<div class="card">
+						<h3>&#128295; Path 2: Model Override</h3>
+						<p><span class="badge badge">2026 Roadmap</span></p>
+						<p style="margin-top:0.75rem;font-size:0.85rem;color:var(--pega-muted);">Override the default model per-use-case or per-tenant. Enables A/B testing and gradual rollouts to different user segments. <strong>Roadmap: Infinity &lsquo;26.</strong></p>
+					</div>
+					<div class="card">
+						<h3>&#128268; Path 3: Third-Party Design-Time</h3>
+						<p><span class="badge badge">2026 Roadmap</span></p>
+						<p style="margin-top:0.75rem;font-size:0.85rem;color:var(--pega-muted);">Integrate external AI tools at design-time (Blueprint phase). Allows custom model fine-tuning pipelines feeding into Pega. <strong>Roadmap: Infinity &lsquo;26.</strong></p>
+					</div>
+				</div>
+				<div class="callout mt1">
+					<span class="ci">&#127968;</span>
+					<div><strong>Prem.ai PremBridge:</strong> For air-gapped or data-sovereign deployments, PremBridge proxies LLM calls to on-premises models (Llama, Mistral, custom fine-tunes) while maintaining the same Pega GenAI Connect interface. No cloud egress required.</div>
+				</div>
+			</div>
+		</div>
+    <div class="content-card mt1">
+      <div class="eyebrow">Topic Guide</div>
+      <h2>Choosing the Right Integration Path</h2>
+      <p>LLM integration strategy is really a decision about control, compliance, and operating model. Cloud-hosted APIs can accelerate adoption and provide fast access to frontier models, but they may introduce concerns about data residency, vendor concentration, or network dependency. On-premises or hybrid patterns offer more control over sensitive workloads, though they often introduce additional infrastructure and model-operations complexity. The right answer depends on the business context, not on a universal preference for cloud or on-premises.</p>
+      <p>Pega supports multiple paths because enterprise environments are mixed by default. Some workloads can safely run through managed cloud providers, while others require gated or private connectivity through options such as PremBridge. Architects should decide based on the sensitivity of prompts, the need for observability, throughput expectations, latency tolerance, and the ability to patch and govern the environment over time.</p>
+      <ul class="feature-list mt1">
+        <li><strong>Cloud integration</strong> offers faster access to managed models and broad feature velocity.</li>
+        <li><strong>Hybrid integration</strong> helps organizations separate low-risk and high-risk workloads intentionally.</li>
+        <li><strong>On-premises patterns</strong> can improve control but require stronger operational maturity.</li>
+        <li><strong>Architecture choice</strong> should follow data sensitivity, not hype or habit.</li>
+      </ul>
+    </div>
+    <div class="content-card mt1">
+      <div class="eyebrow">Architecture View</div>
+      <h2>Integration Decision Pattern</h2>
+      <div class="three-col mt1">
+        <div class="card">
+          <h3>Cloud Hosted</h3>
+          <p style="font-size:0.9rem;color:var(--pega-muted);margin-top:0.75rem;">Best when speed, managed scale, and rapid model updates matter more than deep infrastructure control.</p>
+          <ul class="feature-list mt1">
+            <li>Fastest onboarding</li>
+            <li>Broad model access</li>
+            <li>Higher dependency on provider network and policy envelope</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Hybrid Routed</h3>
+          <p style="font-size:0.9rem;color:var(--pega-muted);margin-top:0.75rem;">Best when different use cases have different risk levels and need flexible routing by workload.</p>
+          <ul class="feature-list mt1">
+            <li>Separates low-risk and high-risk traffic</li>
+            <li>Supports policy-based routing</li>
+            <li>Adds architectural complexity</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>On-Premises</h3>
+          <p style="font-size:0.9rem;color:var(--pega-muted);margin-top:0.75rem;">Best when sovereignty, air-gapped operations, or strict internal controls override convenience.</p>
+          <ul class="feature-list mt1">
+            <li>Maximum data control</li>
+            <li>Custom model choice</li>
+            <li>Highest operational responsibility</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout mt1">
+        <span class="ci">&#128161;</span>
+        <div><strong>Selection rule:</strong> start with the workload's data sensitivity and approval requirements, then choose the simplest integration path that satisfies those constraints.</div>
+      </div>
+    </div>
+        <div class="pager"><a class="btn btn-outline" href="phase3-2.html">&larr; Previous</a><a class="btn btn-primary" href="phase3-4.html">Next &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+    <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

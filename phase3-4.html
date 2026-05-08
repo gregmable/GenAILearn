@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.4 Multi-Agent Systems &amp; AgentX Framework | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body class="page-phase3">
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo">P</div>
+        <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="index.html#phase1">Phase 1</a></li>
+        <li><a href="index.html#phase2">Phase 2</a></li>
+        <li><a href="index.html#phase3">Phase 3</a></li>
+    </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / <a href="index.html#phase3">Phase 3</a> / 3.4</div>
+    <div class="page-hero phase3">
+      <div class="hero-badge">Objective 3.4 &middot; ~3h</div>
+      <h1>Multi-Agent Systems &amp; AgentX Framework</h1>
+      <p>Design and build multi-agent systems using Pega&rsquo;s AgentX framework. Understand the five agent categories, configure out-of-the-box intents, and orchestrate complex agent workflows.</p>
+    </div>
+    <div class="page-layout">
+      <div class="sidebar-card">
+<h3>Phase 3 Directory</h3>
+<div class="directory-section-label">Objectives</div>
+<a class="directory-link" href="phase3-1.html">3.1 · Pega GenAI Architecture Patterns</a>
+<a class="directory-link" href="phase3-2.html">3.2 · Deep Dive: Pega GenAI Product Suite</a>
+<a class="directory-link" href="phase3-3.html">3.3 · LLM Integration Paths &amp; On-Premises Options</a>
+<a class="directory-link current" href="phase3-4.html">3.4 · Multi-Agent Systems &amp; AgentX Framework</a>
+<a class="directory-link" href="phase3-5.html">3.5 · GenAI Connect: Configuration &amp; Walkthrough</a>
+<a class="directory-link" href="phase3-6.html">3.6 · CoE Best Practices &amp; Enterprise Governance</a>
+<a class="directory-link" href="phase3-7.html">3.7 · Production Deployment &amp; Enablement Requirements</a>
+<div class="directory-section-label">Assessment</div>
+<a class="directory-link" href="phase3-quiz.html" data-quiz-link="phase3">Phase 3 Quiz</a>
+</div>
+      <div class="page-detail">
+        <!-- 3.4 -->
+		<div class="obj-card">
+			<div class="obj-card-header">
+				<span class="obj-num-badge">3.4</span>
+				<h3>Multi-Agent Systems &amp; AgentX Framework</h3>
+				<span class="duration">~3h</span>
+			</div>
+			<div class="obj-card-body">
+				<p class="obj-desc">Design and build multi-agent systems using Pega&rsquo;s AgentX framework. Understand the five agent categories, configure out-of-the-box intents, and orchestrate complex agent workflows.</p>
+				<div class="two-col">
+					<div>
+						<div class="resource-group">
+							<div class="resource-source">Five Agent Categories</div>
+							<div class="card-grid" style="grid-template-columns:1fr;gap:0.75rem;margin-top:0.5rem;">
+								<div class="card" style="padding:1rem;">
+									<h3>&#9998; Design Agents</h3>
+									<p>Blueprint, Pega GenAI design-time assistants that generate application artifacts from natural language.</p>
+								</div>
+								<div class="card" style="padding:1rem;">
+									<h3>&#128172; Conversation Agents</h3>
+									<p>Customer-facing chatbots and voice agents powered by GenAI. Handle intent recognition and multi-turn dialogue.</p>
+								</div>
+								<div class="card" style="padding:1rem;">
+									<h3>&#128295; Automation Agents</h3>
+									<p>Autopilot-driven case automation. Execute multi-step workflows autonomously with AI decision-making.</p>
+								</div>
+								<div class="card" style="padding:1rem;">
+									<h3>&#128218; Knowledge Agents</h3>
+									<p>RAG-powered information retrieval. Knowledge Buddy and custom knowledge workers.</p>
+								</div>
+								<div class="card" style="padding:1rem;">
+									<h3>&#127891; Coaching Agents</h3>
+									<p>Real-time agent assistance. Coach provides contextual guidance to human agents during case handling.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="resource-group">
+							<div class="resource-source">AgentX Out-of-the-Box Intents</div>
+							<ul class="feature-list">
+								<li>Case summarization &amp; status briefing</li>
+								<li>Next best action recommendation</li>
+								<li>Document generation &amp; drafting</li>
+								<li>Knowledge base search &amp; retrieval</li>
+								<li>Sentiment analysis &amp; escalation trigger</li>
+								<li>Translation &amp; multilingual support</li>
+								<li>Data extraction from unstructured input</li>
+								<li>Workflow routing &amp; prioritization</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Topic Guide</div>
+			<h2>Why Multi-Agent Systems Are Different from One Assistant</h2>
+			<p>Multi-agent systems work by distributing responsibility across specialized agents instead of asking one model to reason, retrieve, plan, execute, and explain everything alone. This can improve modularity and control because each agent can be tuned for a narrower role. It also introduces orchestration complexity: someone must decide when to delegate, how to pass context, how to reconcile outputs, and when a human needs to intervene.</p>
+			<p>AgentX is valuable because it gives Pega teams a structured way to manage that orchestration inside enterprise workflows. Rather than building ad hoc chains of prompts, teams can define roles, intents, tool access, and approvals more explicitly. The design goal is not maximum autonomy at all costs. It is reliable collaboration between agents, systems, and people, with enough governance that the workflow remains understandable and auditable.</p>
+			<ul class="feature-list mt1">
+				<li><strong>Specialization</strong> helps each agent focus on a narrow, well-governed task.</li>
+				<li><strong>Coordination</strong> determines how tasks are handed off and how results are merged.</li>
+				<li><strong>Human oversight</strong> remains essential for high-impact or ambiguous outcomes.</li>
+				<li><strong>AgentX</strong> gives these patterns a runtime structure that fits business workflows.</li>
+			</ul>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Worked Example</div>
+			<h2>AgentX Example: Claims Triage to Resolution</h2>
+			<p>Picture an insurance claims journey in which a customer uploads photos, a claim narrative, and a police report. A single assistant could summarize the case, but a multi-agent design can split the work more safely. One agent extracts structured facts, another checks policy coverage, another drafts the case summary, and a human reviewer approves the settlement recommendation before it is sent.</p>
+			<div class="flow-steps mt1">
+				<div class="flow-step">
+					<div class="flow-num">1</div>
+					<h4>Intake Agent</h4>
+					<p>Collects documents and normalizes the incoming claim package.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">2</div>
+					<h4>Analysis Agents</h4>
+					<p>Extract facts, assess coverage, and retrieve policy guidance in parallel.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">3</div>
+					<h4>Coordinator</h4>
+					<p>Merges results into one case brief and proposed next action.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">4</div>
+					<h4>Human Approval</h4>
+					<p>Adjuster reviews the recommendation before customer communication.</p>
+				</div>
+			</div>
+			<div class="highlight">
+				<strong>Design lesson:</strong> multi-agent systems are most useful when roles are explicit and approvals are built into the workflow, not when autonomy is expanded without boundaries.
+			</div>
+		</div>
+        <div class="pager"><a class="btn btn-outline" href="phase3-3.html">&larr; Previous</a><a class="btn btn-primary" href="phase3-5.html">Next &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+    <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

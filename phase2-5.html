@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.5 Observability &amp; Monitoring for GenAI | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body class="page-phase2">
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo">P</div>
+        <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="index.html#phase1">Phase 1</a></li>
+        <li><a href="index.html#phase2">Phase 2</a></li>
+        <li><a href="index.html#phase3">Phase 3</a></li>
+    </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / <a href="index.html#phase2">Phase 2</a> / 2.5</div>
+    <div class="page-hero phase2">
+      <div class="hero-badge">Objective 2.5 &middot; ~2.5h</div>
+      <h1>Observability &amp; Monitoring for GenAI</h1>
+      <p>Implement comprehensive observability for GenAI workloads: trace requests, monitor token usage, track tool invocations, and audit model interactions for compliance.</p>
+    </div>
+    <div class="page-layout">
+      <div class="sidebar-card">
+<h3>Phase 2 Directory</h3>
+<div class="directory-section-label">Objectives</div>
+<a class="directory-link" href="phase2-1.html">2.1 · Building RAG Pipelines in Pega</a>
+<a class="directory-link" href="phase2-2.html">2.2 · MCP &amp; Agent-to-Agent (A2A) Protocols</a>
+<a class="directory-link" href="phase2-3.html">2.3 · Enterprise GenAI Tooling &amp; Platform Evaluation</a>
+<a class="directory-link" href="phase2-4.html">2.4 · GenAI Quality Evaluation &amp; Testing</a>
+<a class="directory-link current" href="phase2-5.html">2.5 · Observability &amp; Monitoring for GenAI</a>
+<a class="directory-link" href="phase2-6.html">2.6 · GenAI Security &amp; Data Protection</a>
+<div class="directory-section-label">Assessment</div>
+<a class="directory-link" href="phase2-quiz.html" data-quiz-link="phase2">Phase 2 Quiz</a>
+</div>
+      <div class="page-detail">
+        <!-- 2.5 -->
+		<div class="obj-card">
+			<div class="obj-card-header">
+				<span class="obj-num-badge">2.5</span>
+				<h3>Observability &amp; Monitoring for GenAI</h3>
+				<span class="duration">~2.5h</span>
+			</div>
+			<div class="obj-card-body">
+				<p class="obj-desc">Implement comprehensive observability for GenAI workloads: trace requests, monitor token usage, track tool invocations, and audit model interactions for compliance.</p>
+				<div class="stat-grid">
+					<div class="stat-tile"><div class="stat-val">4</div><div class="stat-lbl">Observability Dimensions</div></div>
+					<div class="stat-tile"><div class="stat-val">P99</div><div class="stat-lbl">Latency Target</div></div>
+					<div class="stat-tile"><div class="stat-val">100%</div><div class="stat-lbl">Audit Coverage</div></div>
+					<div class="stat-tile"><div class="stat-val">Real-time</div><div class="stat-lbl">Token Analytics</div></div>
+				</div>
+				<div class="card-grid card-grid-2">
+					<div class="card">
+						<div class="card-icon ib">&#128203;</div>
+						<h3>Request Tracing</h3>
+						<p>End-to-end trace from user input through retrieval, prompt construction, LLM call, and response. Pega Pulse &amp; OpenTelemetry integration.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon is">&#128200;</div>
+						<h3>Token Analytics</h3>
+						<p>Track prompt tokens, completion tokens, and cost per interaction. Set thresholds and alerts for runaway consumption via Pega GenAI Connect.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon io">&#128295;</div>
+						<h3>Tool Monitoring</h3>
+						<p>Monitor MCP tool invocations, success rates, latency, and error patterns across all agent tool calls in the orchestration layer.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon in">&#128274;</div>
+						<h3>Security Audit Log</h3>
+						<p>Immutable audit trail of all LLM interactions for compliance. Includes user context, masked PII indicators, model used, and response metadata.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">New Resource Links</div>
+			<h2>Monitoring, Security &amp; Governance</h2>
+			<div class="card-grid card-grid-3 mt1">
+				<div class="card">
+					<div class="resource-source">Pega Academy</div>
+					<p>Pega architecture resources covering observability, governance boundaries, and usage tracking.</p>
+					<p style="margin-top:0.75rem;"><a href="https://academy.pega.com/search?search_api_fulltext=ai%20observability" target="_blank">Pega GenAI Architecture</a></p>
+				</div>
+				<div class="card">
+					<div class="resource-source">Coursera</div>
+					<p>Security-oriented supplemental learning aligned to governance and monitoring controls.</p>
+					<p style="margin-top:0.75rem;"><a href="https://www.coursera.org/search?query=AI%20Security%20NIST%20Framework" target="_blank">Search AI Security on Coursera</a></p>
+				</div>
+				<div class="card">
+					<div class="resource-source">Web Reference</div>
+					<p>OWASP Top 10 for LLM applications for production monitoring and security risk review.</p>
+					<p style="margin-top:0.75rem;"><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank">Visit OWASP guidance</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Topic Guide</div>
+			<h2>Observability Turns AI into an Operable Service</h2>
+			<p>Observability for GenAI goes beyond application uptime. Teams need visibility into prompt construction, retrieval quality, latency, token consumption, refusal rates, model errors, tool calls, and user feedback. Without that telemetry, it is very difficult to know whether a decline in business outcomes comes from poor prompts, stale knowledge, provider instability, or a downstream tool failure.</p>
+			<p>The core objective is to make AI behavior diagnosable. That means tracing the full path from user request to final answer, including the documents retrieved, the model used, the parameters applied, and the actions attempted. In Pega, this should connect to the same operational mindset already used for case management and business process monitoring: if AI is part of the workflow, it needs the same level of operational accountability.</p>
+			<ul class="feature-list mt1">
+				<li><strong>Tracing</strong> links prompts, retrieval, tool calls, and outputs into one execution story.</li>
+				<li><strong>Metrics</strong> reveal latency, cost, success rate, and failure patterns over time.</li>
+				<li><strong>Feedback loops</strong> capture whether users found the answer helpful or had to escalate.</li>
+				<li><strong>Alerts</strong> help teams catch drift, provider outages, and abnormal cost spikes early.</li>
+			</ul>
+		</div>
+        <div class="pager"><a class="btn btn-outline" href="phase2-4.html">&larr; Previous</a><a class="btn btn-primary" href="phase2-6.html">Next &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+    <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

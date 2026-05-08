@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.4 GenAI Quality Evaluation &amp; Testing | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body class="page-phase2">
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo">P</div>
+        <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="index.html#phase1">Phase 1</a></li>
+        <li><a href="index.html#phase2">Phase 2</a></li>
+        <li><a href="index.html#phase3">Phase 3</a></li>
+    </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / <a href="index.html#phase2">Phase 2</a> / 2.4</div>
+    <div class="page-hero phase2">
+      <div class="hero-badge">Objective 2.4 &middot; ~3h</div>
+      <h1>GenAI Quality Evaluation &amp; Testing</h1>
+      <p>Design and execute GenAI evaluation frameworks. Use Pega Vibe Eval, LLM-as-judge patterns, and human-in-the-loop review to measure quality, accuracy, and safety systematically.</p>
+    </div>
+    <div class="page-layout">
+      <div class="sidebar-card">
+<h3>Phase 2 Directory</h3>
+<div class="directory-section-label">Objectives</div>
+<a class="directory-link" href="phase2-1.html">2.1 · Building RAG Pipelines in Pega</a>
+<a class="directory-link" href="phase2-2.html">2.2 · MCP &amp; Agent-to-Agent (A2A) Protocols</a>
+<a class="directory-link" href="phase2-3.html">2.3 · Enterprise GenAI Tooling &amp; Platform Evaluation</a>
+<a class="directory-link current" href="phase2-4.html">2.4 · GenAI Quality Evaluation &amp; Testing</a>
+<a class="directory-link" href="phase2-5.html">2.5 · Observability &amp; Monitoring for GenAI</a>
+<a class="directory-link" href="phase2-6.html">2.6 · GenAI Security &amp; Data Protection</a>
+<div class="directory-section-label">Assessment</div>
+<a class="directory-link" href="phase2-quiz.html" data-quiz-link="phase2">Phase 2 Quiz</a>
+</div>
+      <div class="page-detail">
+        <!-- 2.4 -->
+		<div class="obj-card">
+			<div class="obj-card-header">
+				<span class="obj-num-badge">2.4</span>
+				<h3>GenAI Quality Evaluation &amp; Testing</h3>
+				<span class="duration">~3h</span>
+			</div>
+			<div class="obj-card-body">
+				<p class="obj-desc">Design and execute GenAI evaluation frameworks. Use Pega Vibe Eval, LLM-as-judge patterns, and human-in-the-loop review to measure quality, accuracy, and safety systematically.</p>
+				<div class="card-grid card-grid-2">
+					<div class="card">
+						<div class="card-icon ib">&#127919;</div>
+						<h3>Pega Vibe Eval</h3>
+						<p>Pega&rsquo;s built-in evaluation harness. Configure test datasets, run automated scoring, and compare model versions. Available on <a href="https://github.com/pegasystems/pega-vibe-eval" target="_blank">GitHub</a>.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon is">&#129302;</div>
+						<h3>LLM-as-Judge</h3>
+						<p>Use a capable model (GPT-4o, Claude 3.5) to score outputs on correctness, groundedness, fluency, and safety. Enables scalable automated evaluation at low cost.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon io">&#128100;</div>
+						<h3>Human-in-the-Loop (HITL)</h3>
+						<p>Design review workflows for edge cases and high-stakes decisions. Pega case management integrates HITL approval steps natively with GenAI suggestions.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon in">&#128202;</div>
+						<h3>Eval Metrics</h3>
+						<p>Track ROUGE-L, BERTScore, faithfulness, answer relevance, hallucination rate, latency P99, and token cost per query across model versions.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="content-card mt1">
+      <div class="eyebrow">Topic Guide</div>
+      <h2>Testing GenAI Beyond "Looks Good"</h2>
+      <p>GenAI quality evaluation is different from traditional software testing because the output is probabilistic rather than strictly deterministic. You cannot validate a solution only by checking whether one expected sentence appears. Instead, you need a rubric that measures groundedness, completeness, safety, relevance, tone, and task success across a representative dataset. Good evaluation treats model behavior as something to observe and tune continuously, not something to approve once and forget.</p>
+      <p>For enterprise use cases, evaluation should happen at multiple levels. Prompts need test cases. RAG systems need retrieval evaluation. Agent workflows need step-by-step verification and guardrail testing. Business users also need to define what a good answer actually means in context. A technically correct answer that ignores policy, tone, or escalation rules can still be a failed answer in production.</p>
+      <ul class="feature-list mt1">
+        <li><strong>Offline evaluation</strong> uses saved datasets to compare prompt and model changes safely.</li>
+        <li><strong>Human review</strong> captures nuanced quality dimensions that automation may miss.</li>
+        <li><strong>Guardrail testing</strong> probes for hallucination, policy violation, and unsafe tool use.</li>
+        <li><strong>Regression testing</strong> ensures improvements in one scenario do not break another.</li>
+      </ul>
+    </div>
+        <div class="pager"><a class="btn btn-outline" href="phase2-3.html">&larr; Previous</a><a class="btn btn-primary" href="phase2-5.html">Next &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+    <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

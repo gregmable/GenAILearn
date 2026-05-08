@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">P</div>
+    <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="login.html" class="active">Sign In</a></li>
+  </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="content-card auth-card">
+      <div class="eyebrow">Access</div>
+      <h2>Sign In</h2>
+      <p>Please enter your name and password to continue. If this is your first time, entering a new name and password will create your account on this device.</p>
+      <form data-auth-form class="auth-form" style="margin-top:1rem;">
+        <label class="auth-label" for="auth-name">Name</label>
+        <input id="auth-name" data-auth-name class="auth-input" type="text" autocomplete="username" required />
+
+        <label class="auth-label" for="auth-pass" style="margin-top:0.8rem;">Password</label>
+        <input id="auth-pass" data-auth-pass class="auth-input" type="password" autocomplete="current-password" required />
+
+        <p data-auth-error class="auth-error" hidden></p>
+
+        <button type="submit" data-auth-submit class="btn btn-primary" style="margin-top:0.9rem;">Sign In</button>
+      </form>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+  <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+  Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+  <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.5 GenAI Connect: Configuration &amp; Walkthrough | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body class="page-phase3">
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo">P</div>
+        <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="index.html#phase1">Phase 1</a></li>
+        <li><a href="index.html#phase2">Phase 2</a></li>
+        <li><a href="index.html#phase3">Phase 3</a></li>
+    </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="page-breadcrumb"><a href="index.html">Overview</a> / <a href="index.html#phase3">Phase 3</a> / 3.5</div>
+    <div class="page-hero phase3">
+      <div class="hero-badge">Objective 3.5 &middot; ~2h</div>
+      <h1>GenAI Connect: Configuration &amp; Walkthrough</h1>
+      <p>Step-by-step configuration of Pega GenAI Connect in App Studio. Set up model connections, configure routing, test prompts, and deploy to production channels.</p>
+    </div>
+    <div class="page-layout">
+      <div class="sidebar-card">
+<h3>Phase 3 Directory</h3>
+<div class="directory-section-label">Objectives</div>
+<a class="directory-link" href="phase3-1.html">3.1 · Pega GenAI Architecture Patterns</a>
+<a class="directory-link" href="phase3-2.html">3.2 · Deep Dive: Pega GenAI Product Suite</a>
+<a class="directory-link" href="phase3-3.html">3.3 · LLM Integration Paths &amp; On-Premises Options</a>
+<a class="directory-link" href="phase3-4.html">3.4 · Multi-Agent Systems &amp; AgentX Framework</a>
+<a class="directory-link current" href="phase3-5.html">3.5 · GenAI Connect: Configuration &amp; Walkthrough</a>
+<a class="directory-link" href="phase3-6.html">3.6 · CoE Best Practices &amp; Enterprise Governance</a>
+<a class="directory-link" href="phase3-7.html">3.7 · Production Deployment &amp; Enablement Requirements</a>
+<div class="directory-section-label">Assessment</div>
+<a class="directory-link" href="phase3-quiz.html" data-quiz-link="phase3">Phase 3 Quiz</a>
+</div>
+      <div class="page-detail">
+        <!-- 3.5 -->
+		<div class="obj-card">
+			<div class="obj-card-header">
+				<span class="obj-num-badge">3.5</span>
+				<h3>GenAI Connect: Configuration &amp; Walkthrough</h3>
+				<span class="duration">~2h</span>
+			</div>
+			<div class="obj-card-body">
+				<p class="obj-desc">Step-by-step configuration of Pega GenAI Connect in App Studio. Set up model connections, configure routing, test prompts, and deploy to production channels.</p>
+				<div class="two-col">
+					<div>
+						<div class="resource-group">
+							<div class="resource-source">Configuration Steps</div>
+							<ul class="feature-list">
+								<li>Navigate to App Studio &rarr; Settings &rarr; GenAI Connect</li>
+								<li>Add LLM provider (Azure OpenAI / Google Vertex / Anthropic)</li>
+								<li>Enter API endpoint, key/secret, and deployment name</li>
+								<li>Configure default model and fallback chain</li>
+								<li>Set token budget and cost alert thresholds</li>
+								<li>Enable Prompt Masking for PII fields</li>
+								<li>Test connection with built-in prompt sandbox</li>
+								<li>Publish configuration to environments</li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<div class="resource-group">
+							<div class="resource-source">Pega Docs</div>
+							<ul class="resource-list">
+								<li><a href="https://docs.pega.com/bundle/platform/page/platform/genai/configure-genai-connect.html" target="_blank"><strong>Configure GenAI Connect</strong></a> &mdash; official setup guide</li>
+								<li><a href="https://docs.pega.com/bundle/platform/page/platform/genai/genai-connect-overview.html" target="_blank"><strong>GenAI Connect Overview</strong></a></li>
+								<li><a href="https://docs.pega.com/bundle/platform/page/platform/genai/prompt-masking.html" target="_blank"><strong>Prompt Masking Reference</strong></a></li>
+							</ul>
+						</div>
+						<div class="callout">
+							<span class="ci">&#128218;</span>
+							<div>All GenAI Connect configuration persists in Pega ruleset. Use environment-specific overlays for dev/test/prod model separation.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Topic Guide</div>
+			<h2>Connecting Models to Real Workflow Actions</h2>
+			<p>GenAI Connect is important because model calls only become useful in enterprise delivery when they are embedded into real application flows. A walkthrough of the configuration is not just about where to click. It teaches how prompts, data mappings, provider settings, and downstream actions come together into a repeatable pattern. Builders need to understand what data enters the prompt, how the model response is parsed, and what part of the workflow consumes the result.</p>
+			<p>Configuration discipline matters here because weak mappings and unclear prompt contracts create fragile solutions. A connector should behave like any other production integration: explicit inputs, explicit outputs, clear exception handling, and auditability. In Pega, the point is to move from isolated experimentation into reliable workflow components that business teams can reuse, test, and support.</p>
+			<ul class="feature-list mt1">
+				<li><strong>Prompt templates</strong> should be parameterized and versioned instead of hard-coded inline.</li>
+				<li><strong>Data mappings</strong> must make the source and target of each field unambiguous.</li>
+				<li><strong>Error handling</strong> should define what happens if the provider fails or returns unusable output.</li>
+				<li><strong>Workflow integration</strong> is what turns the model call into business value.</li>
+			</ul>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Worked Example</div>
+			<h2>GenAI Connect Example: Case Summary Drafting</h2>
+			<p>Suppose a service case reaches escalation and the operations manager needs a concise summary before taking over. GenAI Connect can map the case history, customer sentiment, open tasks, and recent correspondence into a structured prompt. The model generates a first-draft summary, and the case workflow stores that output in a review field for an agent to approve or edit.</p>
+			<div class="flow-steps mt1">
+				<div class="flow-step">
+					<div class="flow-num">1</div>
+					<h4>Map Inputs</h4>
+					<p>Case data, notes, and SLA status are bound into the prompt template.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">2</div>
+					<h4>Call Model</h4>
+					<p>GenAI Connect sends the request to the configured provider.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">3</div>
+					<h4>Store Output</h4>
+					<p>The draft summary returns to a case field instead of being published immediately.</p>
+				</div>
+				<div class="flow-step">
+					<div class="flow-num">4</div>
+					<h4>Approve</h4>
+					<p>A human user reviews the draft before sending or saving it.</p>
+				</div>
+			</div>
+			<div class="highlight">
+				<strong>Design lesson:</strong> the safest early production patterns use GenAI Connect to draft or recommend inside a workflow, then keep the final decision with a human or a deterministic business rule.
+			</div>
+		</div>
+        <div class="pager"><a class="btn btn-outline" href="phase3-4.html">&larr; Previous</a><a class="btn btn-primary" href="phase3-6.html">Next &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+    <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>
