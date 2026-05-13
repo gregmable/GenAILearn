@@ -1,0 +1,40 @@
+{
+  "servers": {
+    "pega-gridmana-mcp": {
+      "type": "streamable-http",
+      "url": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/app/GridMana/api/service/v1/mcp/DMOrg-GridMana-Work!Grid",
+      "auth": {
+        "type": "oauth2",
+        "grantType": "client_credentials",
+        "tokenUrl": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/PRRestService/oauth2/v1/token",
+        "clientId": "72957161055032363202",
+        "clientSecret": "9672C0DCDF4C2A8C6D442590B59935D6",
+        "scopes": []
+      }
+    },
+    "pega-gridmana-pxcommon-mcp": {
+      "type": "streamable-http",
+      "url": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/app/GridMana/api/service/v1/mcp/pxCommon",
+      "auth": {
+        "type": "oauth2",
+        "grantType": "client_credentials",
+        "tokenUrl": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/PRRestService/oauth2/v1/token",
+        "clientId": "72957161055032363202",
+        "clientSecret": "9672C0DCDF4C2A8C6D442590B59935D6",
+        "scopes": []
+      }
+    },
+    "gridmana-a2a-agent-card": {
+      "type": "http",
+      "url": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/app/GridMana/api/agent2agent/v1/ai-agents/DMORG-GRIDMANA-UIPAGES!GRIDMANAAGENT/.well-known/agent.json",
+      "auth": {
+        "type": "oauth2",
+        "grantType": "client_credentials",
+        "tokenUrl": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/PRRestService/oauth2/v1/token",
+        "clientId": "72957161055032363202",
+        "clientSecret": "9672C0DCDF4C2A8C6D442590B59935D6",
+        "scopes": []
+      }
+    }
+  }
+}

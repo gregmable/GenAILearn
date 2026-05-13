@@ -1,0 +1,13 @@
+
+=== 1) OAuth Token ===
+Token acquired: YES
+
+=== 2) Initialize ===
+Captured session id: PXCONV-4052
+Server protocol version: 2025-11-25
+
+=== 3) notifications/initialized ===
+
+=== 4) tools/list (header+cookie) ===
+
+=== 5) tools/list (query sessionId fallback) ===

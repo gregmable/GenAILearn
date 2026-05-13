@@ -17,7 +17,17 @@
 		.nav-links a:hover { color: var(--pega-orange); text-decoration: none; }
 		.nav-links a.active { color: var(--pega-orange); }
 		.hero { background: linear-gradient(135deg, var(--pega-navy) 0%, #003d8a 60%, #0057a8 100%); color: #fff; padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+		.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background:
+			radial-gradient(circle at 12% 20%, rgba(255,255,255,0.14) 0 50px, transparent 52px),
+			radial-gradient(circle at 88% 28%, rgba(255,255,255,0.10) 0 38px, transparent 40px),
+			radial-gradient(circle at 78% 78%, rgba(241,103,0,0.20) 0 44px, transparent 46px),
+			linear-gradient(120deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 32px),
+			linear-gradient(30deg, rgba(255,255,255,0.07) 0 1px, transparent 1px 28px);
+			background-size: auto, auto, auto, 180px 180px, 200px 200px;
+			opacity: 0.9;
+		}
 		.hero::after { content: ""; position: absolute; bottom: -1px; left: 0; right: 0; height: 60px; background: var(--pega-gray); clip-path: ellipse(55% 100% at 50% 100%); }
+		.hero > * { position: relative; z-index: 2; }
 		.hero-badge { display: inline-block; background: rgba(241,103,0,0.2); border: 1px solid var(--pega-orange); color: var(--pega-orange); border-radius: 20px; padding: 0.3rem 1rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 1.25rem; }
 		.hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
 		.hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 580px; margin: 0 auto 0.5rem; }
@@ -160,7 +170,17 @@
 .page-main { padding: 2rem 0 4rem; }
 .page-breadcrumb { font-size: 0.78rem; color: var(--pega-muted); margin: 1.2rem 0 1rem; }
 .page-breadcrumb a { color: var(--pega-blue); }
-.page-hero { background: linear-gradient(135deg, var(--pega-navy), var(--pega-blue)); color: #fff; border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--pega-shadow); }
+.page-hero { background: linear-gradient(135deg, var(--pega-navy), var(--pega-blue)); color: #fff; border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--pega-shadow); position: relative; overflow: hidden; }
+.page-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background:
+	linear-gradient(140deg, rgba(255,255,255,0.10) 0 2px, transparent 2px 38px),
+	linear-gradient(35deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 30px),
+	radial-gradient(circle at 80% 18%, rgba(255,255,255,0.16) 0 28px, transparent 30px),
+	radial-gradient(circle at 18% 80%, rgba(241,103,0,0.16) 0 34px, transparent 36px);
+	background-size: 240px 240px, 180px 180px, auto, auto;
+	opacity: 0.85;
+}
+.page-hero::after { content: ""; position: absolute; right: -70px; top: -70px; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,0.08); filter: blur(1px); pointer-events: none; }
+.page-hero > * { position: relative; z-index: 2; }
 .page-hero.phase2 { background: linear-gradient(135deg, #004b8d, var(--pega-sky)); }
 .page-hero.phase3 { background: linear-gradient(135deg, #7a3200, var(--pega-orange)); }
 .page-hero h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 0.55rem; }
@@ -194,6 +214,7 @@
 .content-card { background: var(--pega-white); border: 1px solid var(--pega-border); border-radius: var(--radius); box-shadow: var(--pega-shadow); padding: 1.25rem; }
 .content-card h2 { color: var(--pega-navy); margin-bottom: 0.4rem; }
 .content-card p { color: var(--pega-muted); }
+[data-topic-guide-depth="true"] { margin-top: 0.95rem; padding-top: 0.8rem; border-top: 1px dashed rgba(0,87,168,0.28); color: #47506a; font-size: 0.84rem; }
 .page-sequence-progress { position: sticky; top: 60px; z-index: 950; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--pega-border); box-shadow: 0 2px 12px rgba(0,31,91,0.06); }
 .page-sequence-progress .container { display: flex; align-items: center; gap: 1rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }
 .page-sequence-copy { min-width: 220px; }

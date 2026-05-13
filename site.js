@@ -415,6 +415,58 @@
     sidebar.insertBefore(widget, sidebar.firstChild);
   }
 
+  function enhanceTopicGuide() {
+    var pageDetail = document.querySelector(".page-detail");
+    if (!pageDetail) return;
+
+    var topicCard = null;
+    var cards = pageDetail.querySelectorAll(".content-card");
+    cards.forEach(function (card) {
+      if (topicCard) return;
+      var eyebrow = card.querySelector(".eyebrow");
+      if (eyebrow && (eyebrow.textContent || "").trim().toLowerCase() === "topic guide") {
+        topicCard = card;
+      }
+    });
+    if (!topicCard) return;
+
+    // Move Topic Guide to the top of the page detail content.
+    if (pageDetail.firstElementChild !== topicCard) {
+      pageDetail.insertBefore(topicCard, pageDetail.firstElementChild);
+    }
+
+    // Add one extra depth paragraph per topic page (once).
+    if (topicCard.querySelector("[data-topic-guide-depth='true']")) return;
+
+    var depthByPage = {
+      "phase1-1.html": "A practical way to apply this topic is to classify candidate use cases into three buckets: automate, assist, and augment. If a use case needs strict determinism, keep AI in an assistive role with explicit human approval; if it needs speed and drafting support, use GenAI to generate first-pass outputs that business users review inside the process.",
+      "phase1-2.html": "When comparing models, teams should run the same benchmark prompts across options and evaluate not only answer quality, but also latency, consistency, and cost at realistic token volumes. This creates a decision record that can be reused when models are upgraded or replaced.",
+      "phase1-3.html": "Prompt quality improves fastest when teams maintain a small prompt library with version history, expected outputs, and failure examples. Treating prompts as testable assets helps reduce regressions when system instructions, model versions, or retrieval context changes.",
+      "phase1-4.html": "Mature RAG implementations also define fallback behavior for low-confidence retrieval, such as asking a clarifying question or escalating to a human. This prevents confident but weakly grounded responses and improves trust in high-stakes workflows.",
+      "phase1-5.html": "Architecture decisions become simpler when each product capability is mapped to a specific lifecycle stage: discover, design, build, run, and optimize. This avoids overloading one tool and creates clearer ownership for enablement, governance, and support.",
+      "phase1-6.html": "An effective governance baseline includes risk classification, red-team testing cadence, approval checkpoints, and evidence retention. These controls should be proportional to impact, so low-risk assistants remain fast while high-impact workflows remain auditable and safe.",
+      "phase2-1.html": "Operationally, teams should plan index refresh frequency and source ownership from day one. RAG quality often degrades because content freshness and metadata governance are treated as afterthoughts rather than first-class parts of the architecture.",
+      "phase2-2.html": "In production, protocol choices should be paired with explicit authorization boundaries so agents can only invoke approved tools for their role. This combination of protocol standardization and least privilege is what makes multi-agent systems maintainable at scale.",
+      "phase2-3.html": "A useful evaluation scorecard includes dimensions for platform fit, runtime controls, governance maturity, and developer ergonomics. Scoring each tool against weighted business priorities makes vendor selection more objective and easier to defend.",
+      "phase2-4.html": "Teams usually get better outcomes by combining automated checks with periodic human audits on edge cases. This hybrid approach captures both measurable regressions and qualitative issues such as tone, policy adherence, and workflow appropriateness.",
+      "phase2-5.html": "Observability should include user-centered measures like rework rate, escalation frequency, and time-to-resolution, not just technical metrics. These indicators reveal whether AI is genuinely improving business outcomes rather than only system performance.",
+      "phase2-6.html": "Security reviews should validate the full execution chain: prompt input, retrieval context, model output, and downstream actions. Most serious incidents happen at boundaries between components, so end-to-end threat modeling is critical.",
+      "phase3-1.html": "Reference architectures are most valuable when they are accompanied by implementation guardrails, such as approved integration patterns and reusable templates. This turns architecture from static documentation into an accelerator for delivery teams.",
+      "phase3-2.html": "Portfolio depth pays off when solution teams define capability handoff points early, for example where Blueprint output becomes build-time assets and where runtime assistants consume governed knowledge sources. Clear handoffs reduce rework during scaling.",
+      "phase3-3.html": "Integration strategy should be reviewed periodically as policy, model capabilities, and cost structures evolve. A design that starts cloud-first can transition to hybrid for sensitive workloads without major disruption if abstraction boundaries are respected.",
+      "phase3-4.html": "Multi-agent orchestration should include explicit conflict-resolution rules for inconsistent agent outputs. Determining precedence, confidence thresholds, and human override paths prevents brittle behavior in real-world, ambiguous scenarios.",
+      "phase3-5.html": "Connector reliability improves when teams standardize prompt contracts and output schemas, then validate them in pre-production with representative data. This reduces runtime parsing errors and makes downstream workflow behavior more predictable.",
+      "phase3-6.html": "A strong CoE publishes reusable playbooks and starter artifacts, then measures adoption quality across teams. Governance is most effective when it enables delivery speed while maintaining evidence-based controls across the portfolio.",
+      "phase3-7.html": "Before go-live, run a readiness drill that simulates incidents such as model outage, low-quality responses, and access-control failures. Rehearsing these scenarios validates runbooks, ownership, and communication paths under pressure."
+    };
+
+    var extra = depthByPage[currentFileName] || "As you continue, map each concept to a real workflow in your environment and define how you will measure outcome quality over time. This turns conceptual understanding into an operational plan that can be tested, improved, and governed.";
+    var p = document.createElement("p");
+    p.setAttribute("data-topic-guide-depth", "true");
+    p.textContent = extra;
+    topicCard.appendChild(p);
+  }
+
   function renderUserSummary() {
     if (currentFileName !== "index.html" || !currentUser || !currentUser.profile) return;
     var container = document.querySelector(".page-main .container");
@@ -680,6 +732,7 @@
   setupNavHighlight();
   setupAccountControls();
   renderUserSummary();
+  enhanceTopicGuide();
   renderScrollBar();
   renderBackToTop();
   renderSequenceProgress();
