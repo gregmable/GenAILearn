@@ -58,6 +58,33 @@
             <li>Use GenAI Connect when the problem is model integration and prompt execution.</li>
           </ul>
         </div>
+        
+        <div class="content-card mt1">
+          <div class="eyebrow">Advanced Integration</div>
+          <h2>MCP Service – Extending to External AI</h2>
+          <div class="card-grid card-grid-2 mt1">
+            <div class="card-item">
+              <h4>What is MCP?</h4>
+              <p>MCP stands for <strong>Model Context Protocol</strong>. It's a bridge between Pega and external AI systems. The MCP Service allows a Pega GenAI Agent to connect with outside models or data sources to get information or delegate tasks beyond what's in the Pega app itself.</p>
+              <p><strong>In simple terms:</strong> MCP is an interpreter that lets our Pega Agent "talk" to external AI or services. This could be another AI agent, a large language model running outside Pega, or an external knowledge database.</p>
+            </div>
+            <div class="card-item">
+              <h4>Why Have MCP Integration?</h4>
+              <p>External systems often have valuable intelligence. Your company might have:</p>
+              <ul>
+                <li>Custom AI models for fraud detection</li>
+                <li>Powerful cloud AI services</li>
+                <li>Specialized external data sources</li>
+              </ul>
+              <p>The MCP connection <strong>broadens the capabilities of Agents</strong> by giving them access to outside data or expertise, while maintaining controlled and secure access.</p>
+            </div>
+          </div>
+          <div class="highlight-box mt1">
+            <h4>Real-World Scenario: Fraud Detection</h4>
+            <p>Imagine the insurer uses a third-party AI service to assess fraud likelihood. The Pega developer sets up an MCP connection to that service. Now, the GenAI Agent can automatically call this service with claim details to get a fraud risk score. The adjuster sees: <em>"External analysis suggests a low risk of fraud for this claim"</em> – without leaving the Pega app.</p>
+          </div>
+        </div>
+        
         <div class="content-card mt1">
           <div class="eyebrow">Spreadsheet Topic Coverage</div>
           <h2>Portfolio and Authoring Topics</h2>
