@@ -71,7 +71,7 @@
       { question: "Why is Pega's layered architecture useful?", options: ["It guarantees perfect model outputs", "It separates presentation, orchestration, integration, and foundation concerns", "It eliminates the need for APIs", "It trains custom LLMs automatically", "It replaces governance committees"], correct: 1, why: "The layered model creates clearer boundaries for reuse, governance, and scaling." },
       { question: "What kind of governance is especially important for Pega workflows with AI-triggered downstream actions?", options: ["No approval path", "Human review and auditability proportional to workflow risk", "Only UI logging", "Only cost controls", "Only faster prompts"], correct: 1, why: "High-impact workflows need review, logging, and controls matched to business risk." },
       { question: "What makes Pega's product portfolio more effective than isolated AI tools?", options: ["Every component does the same job", "Each capability supports a different lifecycle stage and works inside a common governed platform", "It avoids retrieval systems", "It only supports cloud models", "It prevents integration with other systems"], correct: 1, why: "The portfolio is designed as a set of complementary capabilities mapped to different stages of delivery and operation." }
-    }
+    ]
   };
   var pageSequence = [
     { file: "phase1-1.html", label: "1.1 GenAI Fundamentals & Enterprise AI Vision", phase: "phase1" },
