@@ -10,7 +10,7 @@
 <body class="page-phase2">
 <nav>
     <div class="nav-brand">
-        <div class="nav-logo">P</div>
+        <div class="nav-logo"><img src="assets/pega-logo.svg" alt="Pega GenAI Learning Path" /></div>
         <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
     </div>
     <ul class="nav-links">
@@ -26,13 +26,13 @@
     <div class="page-hero phase2">
       <div class="hero-badge">Objective 2.2 &middot; ~3h</div>
       <h1>MCP &amp; Agent-to-Agent (A2A) Protocols</h1>
-      <p>Understand Model Context Protocol (MCP) and Agent-to-Agent (A2A) communication patterns. Learn how Pega exposes and consumes MCP servers, and how to configure multi-agent orchestration.</p>
+      <p>Understand Model Context Protocol (MCP) and Agent-to-Agent (A2A) communication patterns. Learn how Platform exposes and consumes MCP servers, and how to configure multi-agent orchestration.</p>
     </div>
     <div class="page-layout">
       <div class="sidebar-card">
 <h3>Phase 2 Directory</h3>
 <div class="directory-section-label">Objectives</div>
-<a class="directory-link" href="phase2-1.html">2.1 · Building RAG Pipelines in Pega</a>
+<a class="directory-link" href="phase2-1.html">2.1 · Building Production RAG Pipelines</a>
 <a class="directory-link current" href="phase2-2.html">2.2 · MCP &amp; Agent-to-Agent (A2A) Protocols</a>
 <a class="directory-link" href="phase2-3.html">2.3 · Enterprise GenAI Tooling &amp; Platform Evaluation</a>
 <a class="directory-link" href="phase2-4.html">2.4 · GenAI Quality Evaluation &amp; Testing</a>
@@ -50,7 +50,7 @@
 				<span class="duration">~3h</span>
 			</div>
 			<div class="obj-card-body">
-				<p class="obj-desc">Understand Model Context Protocol (MCP) and Agent-to-Agent (A2A) communication patterns. Learn how Pega exposes and consumes MCP servers, and how to configure multi-agent orchestration.</p>
+				<p class="obj-desc">Understand Model Context Protocol (MCP) and Agent-to-Agent (A2A) communication patterns. Learn how Platform exposes and consumes MCP servers, and how to configure multi-agent orchestration.</p>
 				<div class="two-col">
 					<div>
 						<div class="resource-group">
@@ -61,14 +61,14 @@
 									<tr><td>Purpose</td><td>Tool/context exposure</td><td>Agent coordination</td></tr>
 									<tr><td>Initiator</td><td>LLM host</td><td>Orchestrator agent</td></tr>
 									<tr><td>Transport</td><td>HTTP SSE / stdio</td><td>HTTP REST / WebSocket</td></tr>
-									<tr><td>Pega Support</td><td>Built-in MCP servers</td><td>AgentX framework</td></tr>
+									<tr><td>Platform Support</td><td>Built-in MCP servers</td><td>AgentX framework</td></tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div>
 						<div class="resource-group">
-							<div class="resource-source">Pega MCP Servers (Internal)</div>
+							<div class="resource-source">Platform MCP Servers (Internal)</div>
 							<ul class="resource-list">
 								<li><strong>SDLC Hub</strong> &mdash; sprint data, story management</li>
 								<li><strong>IT Knowledge Hub (ITKHUB)</strong> &mdash; incident &amp; CMDB access</li>
@@ -79,7 +79,7 @@
 						</div>
 						<div class="callout">
 							<span class="ci">&#128276;</span>
-							<div>MCP transport: <strong>HTTP SSE</strong> for remote servers, <strong>stdio</strong> for local/embedded. Pega Infinity 25 ships with SSE support built-in.</div>
+							<div>MCP transport: <strong>HTTP SSE</strong> for remote servers, <strong>stdio</strong> for local/embedded. Platform Infinity 25 ships with SSE support built-in.</div>
 						</div>
 					</div>
 				</div>
@@ -90,9 +90,9 @@
 			<h2>Model Context Protocol</h2>
 			<div class="card-grid card-grid-3 mt1">
 				<div class="card">
-					<div class="resource-source">Pega Academy</div>
-					<p>Pega's agentic AI design training for MCP-connected tools and multi-agent patterns.</p>
-					<p style="margin-top:0.75rem;"><a href="https://academy.pega.com/mission/accelerated-solution-design-pega-blueprint/v1" target="_blank">The Agentic AI Design Approach</a></p>
+					<div class="resource-source">Platform Academy</div>
+					<p>the platform's agentic AI design training for MCP-connected tools and multi-agent patterns.</p>
+					<p style="margin-top:0.75rem;"><a href="phase4-2.html" target="_blank">The Agentic AI Design Approach</a></p>
 				</div>
 				<div class="card">
 					<div class="resource-source">Coursera</div>
@@ -110,7 +110,7 @@
 			<div class="eyebrow">Topic Guide</div>
 			<h2>Protocols That Make Agents Useful</h2>
 			<p>Protocols such as MCP and A2A matter because enterprise agents need reliable ways to reach tools, data, and each other. A model by itself can generate text, but it cannot safely act on business systems unless it has a structured contract for tool invocation. MCP standardizes how agents discover capabilities and call external tools. A2A extends the conversation by allowing specialized agents to coordinate rather than forcing one agent to do every job poorly.</p>
-			<p>For Pega teams, these protocols are important because they turn GenAI from a chat interface into an operational component. They enable reusable integrations, clearer security boundaries, and better separation of responsibilities. Instead of hard-coding each external action into one assistant, you can expose capabilities as governed tools and let orchestrators decide which agent should handle which step. That is a much more scalable design for enterprise automation.</p>
+			<p>For Platform teams, these protocols are important because they turn GenAI from a chat interface into an operational component. They enable reusable integrations, clearer security boundaries, and better separation of responsibilities. Instead of hard-coding each external action into one assistant, you can expose capabilities as governed tools and let orchestrators decide which agent should handle which step. That is a much more scalable design for enterprise automation.</p>
 			<ul class="feature-list mt1">
 				<li><strong>MCP</strong> defines a standard interface for tools, prompts, and external resources.</li>
 				<li><strong>A2A</strong> supports delegation between specialized agents with different roles.</li>
@@ -155,7 +155,7 @@
 </main>
 <footer class="page-shell-footer">
     <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
-    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    Platform Systems &middot; May 2026 &middot; Multi-page learning experience<br>
     <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
 </footer>
 </body>

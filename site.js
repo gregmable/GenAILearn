@@ -9,8 +9,8 @@
   var currentUser = null;
 
   // ── Quiz dependency chain ──────────────────────────────────────────────
-  var quizOrder = ["phase1", "phase2", "phase3"];
-  var quizDependencies = { phase1: null, phase2: "phase1", phase3: "phase2" };
+  var quizOrder = ["phase1", "phase2", "phase3", "phase4"];
+  var quizDependencies = { phase1: null, phase2: "phase1", phase3: "phase2", phase4: "phase3" };
 
   // ── Quiz question bank (10 per phase; 5 randomly selected per attempt) ─
   var quizData = {
@@ -18,19 +18,19 @@
       { question: "What is the primary difference between Generative AI and Analytical AI?", options: ["Generative AI makes predictions while Analytical AI creates new content", "Generative AI creates new content while Analytical AI makes predictions and decisions", "They are the same thing with different names", "Generative AI only works with text while Analytical AI works with numbers", "Generative AI is faster than Analytical AI"], correct: 1, why: "Generative AI creates new content, while analytical AI supports prediction and decisioning." },
       { question: "Which training stage uses reinforcement learning from human feedback (RLHF)?", options: ["Pretraining only", "Inference only", "Supervised fine-tuning (SFT) and alignment with human preferences", "Tokenization stage", "Context window expansion"], correct: 2, why: "RLHF is used during alignment after pretraining, together with SFT, to tune outputs toward human preferences." },
       { question: "Approximately how many tokens equal one word in most LLM tokenization schemes?", options: ["1 token equals 1 word exactly", "1 token equals approximately three-quarters of a word", "1 token equals 2 words", "1 token equals half a word", "Token count is unrelated to word count"], correct: 1, why: "A common estimate is about 1 token for every three-quarters of a word." },
-      { question: "In Pega Infinity '25, which model is designated as 'Smart' for AWS Bedrock?", options: ["Claude Haiku 3", "Gemini Flash 2", "GPT-4o mini", "Claude Sonnet 3.7", "Gemini Pro 1.5"], correct: 3, why: "The deck identifies Claude Sonnet 3.7 as the AWS Bedrock 'Smart' option." },
+      { question: "Which factor is most useful when selecting an LLM for enterprise use?", options: ["Logo familiarity only", "A balance of latency, cost, quality, privacy, and governance fit", "The newest model every time", "The model with the biggest context window only", "The cheapest endpoint regardless of output quality"], correct: 1, why: "Model choice should reflect business and technical trade-offs such as latency, quality, privacy, and governance." },
       { question: "What does higher temperature setting produce in LLM outputs?", options: ["Faster processing speed", "More creative and diverse outputs", "More focused and predictable outputs", "Lower token costs", "Better grammar and spelling"], correct: 1, why: "Higher temperature increases randomness, which usually makes outputs more varied and creative." },
       { question: "What is an LLM 'context window'?", options: ["The number of users who can query the model simultaneously", "The maximum amount of text (in tokens) a model can process in a single request", "The time it takes to generate a response", "The list of supported programming languages", "The size of the training dataset"], correct: 1, why: "The context window is the total number of tokens (input + output) a model can handle in one request." },
       { question: "What is 'fine-tuning' in the context of large language models?", options: ["Adjusting the temperature parameter at inference time", "Further training a pre-trained model on a smaller domain-specific dataset", "Removing unnecessary tokens from a prompt", "Compressing the model weights for faster inference", "Running the model on specialized hardware"], correct: 1, why: "Fine-tuning adapts a pre-trained base model to a specific domain or task using additional labeled data." },
       { question: "What is an LLM 'hallucination'?", options: ["A model producing extremely slow responses", "A model confidently generating factually incorrect or fabricated information", "A model refusing to answer a question", "A model producing excessively long outputs", "A security vulnerability in the model API"], correct: 1, why: "Hallucination refers to the model generating plausible-sounding but incorrect or invented content." },
       { question: "Which prompt engineering technique involves providing examples of input-output pairs directly in the prompt?", options: ["Zero-shot prompting", "Chain-of-thought prompting", "Few-shot prompting", "System prompting", "Temperature tuning"], correct: 2, why: "Few-shot prompting includes example input-output pairs in the prompt so the model can learn the pattern in-context." },
-      { question: "What is Pega's primary principle for responsible AI deployment?", options: ["Maximize throughput above all else", "Ethical AI with human oversight and governance", "Deploy all AI with zero human review", "Use only open-source models", "AI decisions must never be explained"], correct: 1, why: "Pega emphasizes ethical, governed AI with human oversight as core to responsible enterprise AI." }
+      { question: "What is a core principle of responsible AI deployment?", options: ["Maximize throughput above all else", "Ethical AI with human oversight and governance", "Deploy all AI with zero human review", "Use only open-source models", "AI decisions must never be explained"], correct: 1, why: "Responsible enterprise AI requires governance, review, and clear accountability for outcomes." }
     ],
     phase2: [
       { question: "What does RAG stand for in GenAI architecture?", options: ["Rapid Agent Generation", "Retrieval Augmented Generation", "Reinforcement Adaptive Grounding", "Random Access Gateway", "Recursive Algorithm Generation"], correct: 1, why: "RAG means Retrieval Augmented Generation and grounds model responses in retrieved source content." },
       { question: "What analogy is used to describe the Model Context Protocol (MCP)?", options: ["The WiFi for AI", "The Bluetooth for AI", "The USB-C for AI", "The Ethernet for AI", "The HDMI for AI"], correct: 2, why: "The presentation calls MCP 'the USB-C for AI' because it standardizes access to tools and data." },
-      { question: "Which protocol is used for peer-to-peer agent collaboration in Pega's multi-agent systems?", options: ["MCP (Model Context Protocol)", "HTTP", "A2A (Agent-to-Agent)", "REST API", "GraphQL"], correct: 2, why: "A2A is used for agent collaboration, while MCP is for tool and data access." },
-      { question: "How many languages does Pega's content filtering support for harmful content detection?", options: ["4 languages", "6 languages", "8 languages", "10 languages", "12 languages"], correct: 2, why: "The deck states Pega content filtering supports 8 languages." },
+      { question: "Which protocol is used for peer-to-peer agent collaboration in multi-agent systems?", options: ["MCP (Model Context Protocol)", "HTTP", "A2A (Agent-to-Agent)", "REST API", "GraphQL"], correct: 2, why: "A2A is used for agent collaboration, while MCP is for tool and data access." },
+      { question: "What is the primary purpose of content filtering in a GenAI system?", options: ["To reduce token count only", "To detect and block harmful, unsafe, or policy-violating content", "To improve GPU utilization", "To choose the cheapest model", "To convert prompts into embeddings"], correct: 1, why: "Content filtering helps enforce safety policies by screening prompts and outputs for harmful or disallowed content." },
       { question: "What is the recommended practice for validating GenAI outputs in production?", options: ["Automated testing only", "Human-in-the-loop (HITL) evaluation", "No validation needed", "Use only judge agents", "Rely on model confidence scores"], correct: 1, why: "HITL validation is recommended so humans can review outputs before or during production use." },
       { question: "What does 'chunking' refer to in a RAG pipeline?", options: ["Dividing a model's weights into smaller files for distribution", "Splitting source documents into smaller text segments for indexing and retrieval", "Grouping users by query type", "Batching inference requests for efficiency", "Compressing embeddings for storage"], correct: 1, why: "Chunking splits source documents into manageable segments so they can be embedded and retrieved effectively." },
       { question: "What is a vector embedding?", options: ["A compressed image format for AI training data", "A numerical representation of text that captures semantic meaning in multi-dimensional space", "A hardware accelerator for LLMs", "A type of prompt template", "A log format for GenAI telemetry"], correct: 1, why: "Vector embeddings convert text to numeric vectors that capture semantic similarity, enabling similarity search in RAG." },
@@ -39,41 +39,60 @@
       { question: "What metric measures whether a RAG-generated answer is factually supported by the retrieved source documents?", options: ["Latency", "Faithfulness / groundedness", "Token throughput", "Context window utilization", "Embedding cosine distance"], correct: 1, why: "Faithfulness (groundedness) measures whether the generated answer is actually supported by the retrieved source material." }
     ],
     phase3: [
-      { question: "How many layers are in Pega's GenAI architecture?", options: ["Two layers", "Three layers", "Four layers", "Five layers", "Six layers"], correct: 2, why: "Pega's GenAI architecture is described as a four-layer model." },
-      { question: "Which Pega GenAI product uses RAG to answer questions from client content?", options: ["Autopilot", "Blueprint", "Knowledge Buddy", "Coach", "AgentX API"], correct: 2, why: "Knowledge Buddy is the RAG-based assistant for answering from client content." },
-      { question: "What was the Pega GenAI Gateway service introduced in?", options: ["Infinity '21", "Infinity '22", "Infinity '23", "Infinity '24", "Infinity '25"], correct: 2, why: "The material says the Gateway service was introduced in Infinity '23." },
-      { question: "Which Pega product enables collaborative application design with AI-assisted workflow creation?", options: ["Autopilot", "Blueprint", "Knowledge Buddy", "Coach", "Connect"], correct: 1, why: "Blueprint is the collaborative AI-assisted design tool for application and workflow creation." },
-      { question: "What connectivity mechanism enables client-managed deployments to access Pega Cloud-hosted GenAI services?", options: ["CloudConnect", "PremBridge", "GenAI Gateway", "Direct API", "VPN Tunnel"], correct: 1, why: "PremBridge provides secure connectivity between client-managed deployments and Pega Cloud-hosted GenAI services." },
-      { question: "What is Pega Autopilot's primary function?", options: ["Managing database queries", "Providing AI-driven automation that executes case work autonomously within defined guardrails", "Generating marketing content", "Training custom LLMs on client data", "Load-balancing LLM requests"], correct: 1, why: "Autopilot autonomously drives case work forward using AI, with human oversight at configurable control points." },
-      { question: "What does a GenAI Center of Excellence (CoE) primarily govern?", options: ["Hardware procurement for GPU clusters", "Standards, policies, and oversight for enterprise-wide GenAI adoption and risk management", "Writing all prompts for every business unit", "Deploying the LLM training infrastructure", "Managing vendor SLAs for cloud storage"], correct: 1, why: "A CoE establishes governance frameworks, standards, and policies for responsible enterprise GenAI adoption." },
-      { question: "What does Pega's AgentX framework enable in multi-agent systems?", options: ["GPU scheduling for LLM inference", "Orchestrating multiple specialized AI agents that collaborate to handle complex tasks", "Fine-tuning Pega-specific LLMs", "Encrypting agent-to-agent communication", "Managing cloud billing for AI services"], correct: 1, why: "AgentX orchestrates specialized agents that work together, each handling a domain-specific part of a complex workflow." },
-      { question: "Which Pega product provides next-best-action recommendations for customer service agents?", options: ["Blueprint", "Knowledge Buddy", "Pega Customer Decision Hub (CDH)", "PremBridge", "AgentX"], correct: 2, why: "Pega Customer Decision Hub (CDH) is the decisioning engine that surfaces next-best-action recommendations in real time." },
-      { question: "In a hybrid LLM deployment, what is the main advantage of keeping a smaller local model on-premises?", options: ["It always produces higher-quality outputs than cloud models", "It reduces latency and keeps sensitive data from leaving the organization's environment", "It is cheaper to train than cloud-hosted models", "It supports larger context windows than cloud models", "It requires no prompting or configuration"], correct: 1, why: "On-premises/local models keep data in-house and reduce round-trip latency, which is critical for sensitive workloads." }
-    ]
+      { question: "Why do reference architectures matter in GenAI delivery?", options: ["They eliminate the need for testing", "They define reusable boundaries for UI, orchestration, integrations, and models", "They guarantee model accuracy", "They replace runbooks", "They remove governance requirements"], correct: 1, why: "Reference architectures clarify boundaries and improve reuse, resilience, and governance." },
+      { question: "What is the main purpose of an orchestration layer in a GenAI system?", options: ["Hosting GPUs", "Coordinating workflow steps, approvals, tools, and model calls", "Storing training data", "Replacing the knowledge base", "Managing browser sessions"], correct: 1, why: "The orchestration layer manages control flow, decision points, and coordination across components." },
+      { question: "Which deployment pattern is best when data sovereignty is the top concern?", options: ["Cloud-only managed inference", "Hybrid routing", "On-premises or private deployment", "Public demo environment", "Client-side prompting only"], correct: 2, why: "Private or on-premises deployment is preferred when sensitive data must remain under strict control." },
+      { question: "What does a GenAI Center of Excellence primarily provide?", options: ["GPU procurement only", "Standards, governance, reusable playbooks, and oversight", "A single prompt library for all use cases", "Training data labeling services only", "Model pretraining infrastructure"], correct: 1, why: "A CoE governs adoption with standards, operating models, and reusable delivery guidance." },
+      { question: "What is a key goal of production readiness reviews for GenAI?", options: ["Making the UI more colorful", "Ensuring incident response, monitoring, controls, and ownership are defined", "Increasing token usage", "Removing all human review", "Eliminating backups"], correct: 1, why: "Readiness reviews ensure the team can safely run, monitor, and recover the system in production." },
+      { question: "Why should connector contracts and output schemas be standardized?", options: ["To make prompts longer", "To reduce parsing errors and improve downstream reliability", "To avoid using retrieval", "To increase GPU memory usage", "To eliminate observability"], correct: 1, why: "Clear contracts reduce runtime ambiguity and make integration behavior more predictable." },
+      { question: "What helps multi-agent systems stay reliable in ambiguous scenarios?", options: ["Removing human overrides", "Conflict resolution rules and escalation paths", "Using only one agent", "Disabling tool access", "Increasing temperature"], correct: 1, why: "Conflict resolution, confidence thresholds, and escalation rules prevent brittle multi-agent behavior." },
+      { question: "Which metric is most business-relevant for AI observability?", options: ["Only GPU utilization", "Only context window size", "Rework rate, escalation frequency, and time-to-resolution", "Only token count", "Only model brand"], correct: 2, why: "Business outcome metrics show whether AI improves operations, not just system performance." },
+      { question: "What is a good reason to use hybrid routing across multiple models?", options: ["To avoid any governance", "To match different workloads to different latency, cost, or risk profiles", "To prevent evaluation", "To remove audit logging", "To stop using APIs"], correct: 1, why: "Hybrid routing lets teams match different use cases to the most appropriate model and control profile." },
+      { question: "Before go-live, what kind of drill is most useful?", options: ["Branding workshop", "Readiness simulation covering outages, weak outputs, and access failures", "A prompt length competition", "A model popularity survey", "A one-time latency check only"], correct: 1, why: "Scenario-based drills validate runbooks, ownership, and communication under realistic failure conditions." }
+    ],
+    phase4: [
+      { question: "Which Pega capability focuses on AI-assisted application design from natural language input?", options: ["Knowledge Buddy", "Blueprint", "Customer Decision Hub", "PremBridge", "Pulse"], correct: 1, why: "Blueprint is the Pega capability centered on design-time application generation and discovery." },
+      { question: "Which Pega capability is primarily used for grounded knowledge retrieval with enterprise content?", options: ["Autopilot", "Coach", "Knowledge Buddy", "AgentX", "Text Analyzer"], correct: 2, why: "Knowledge Buddy is the Pega knowledge assistant for grounded answers over enterprise content." },
+      { question: "What is the role of Pega GenAI Connect?", options: ["Human approval workflow only", "Model and tool integration layer for prompts, routing, and execution", "Vector database engine", "Browser automation tool", "Only UI theming"], correct: 1, why: "GenAI Connect is Pega's integration surface for model access, prompt execution, and routing behavior." },
+      { question: "What does the AgentX framework enable?", options: ["Database sharding", "Orchestrating multiple specialized agents for complex tasks", "Compressing model weights", "Only report generation", "Replacing case management"], correct: 1, why: "AgentX enables multi-agent orchestration where specialized agents collaborate inside governed workflows." },
+      { question: "What is a major advantage of Pega's AI approach in enterprise settings?", options: ["It removes the need for governance", "It embeds AI into workflows, cases, and decisioning instead of isolating it as a separate tool", "It only works with one model provider", "It requires no integration planning", "It avoids human review entirely"], correct: 1, why: "Pega's value is in embedding AI inside governed workflow and decisioning contexts." },
+      { question: "Which Pega option supports secure connectivity for more controlled or private model deployments?", options: ["PremBridge", "Coach", "Blueprint", "Case Designer", "Decision Table"], correct: 0, why: "PremBridge supports secure connectivity patterns for more controlled deployment models." },
+      { question: "What should teams define before exposing Pega knowledge assistants to end users?", options: ["Only a model nickname", "Source ownership, freshness, permissions, and evaluation criteria", "Only a chatbot avatar", "Only the UI theme", "Only a token cap"], correct: 1, why: "Knowledge services need clear ownership, freshness rules, access controls, and evaluation standards before release." },
+      { question: "Why is Pega's layered architecture useful?", options: ["It guarantees perfect model outputs", "It separates presentation, orchestration, integration, and foundation concerns", "It eliminates the need for APIs", "It trains custom LLMs automatically", "It replaces governance committees"], correct: 1, why: "The layered model creates clearer boundaries for reuse, governance, and scaling." },
+      { question: "What kind of governance is especially important for Pega workflows with AI-triggered downstream actions?", options: ["No approval path", "Human review and auditability proportional to workflow risk", "Only UI logging", "Only cost controls", "Only faster prompts"], correct: 1, why: "High-impact workflows need review, logging, and controls matched to business risk." },
+      { question: "What makes Pega's product portfolio more effective than isolated AI tools?", options: ["Every component does the same job", "Each capability supports a different lifecycle stage and works inside a common governed platform", "It avoids retrieval systems", "It only supports cloud models", "It prevents integration with other systems"], correct: 1, why: "The portfolio is designed as a set of complementary capabilities mapped to different stages of delivery and operation." }
+    }
   };
   var pageSequence = [
-    { file: "phase1-1.html", label: "1.1 GenAI Fundamentals & Pega's AI Vision", phase: "phase1" },
+    { file: "phase1-1.html", label: "1.1 GenAI Fundamentals & Enterprise AI Vision", phase: "phase1" },
     { file: "phase1-2.html", label: "1.2 Large Language Models (LLMs) & Architecture", phase: "phase1" },
     { file: "phase1-3.html", label: "1.3 Prompt Engineering Fundamentals", phase: "phase1" },
     { file: "phase1-4.html", label: "1.4 Retrieval-Augmented Generation (RAG)", phase: "phase1" },
-    { file: "phase1-5.html", label: "1.5 Pega GenAI Product Portfolio Overview", phase: "phase1" },
+    { file: "phase1-5.html", label: "1.5 AI Product Portfolio Overview", phase: "phase1" },
     { file: "phase1-6.html", label: "1.6 AI Ethics, Governance & Responsible AI", phase: "phase1" },
     { file: "phase1-quiz.html", label: "Phase 1 Knowledge Quiz", quizKey: "phase1", phase: "phase1" },
-    { file: "phase2-1.html", label: "2.1 Building RAG Pipelines in Pega", phase: "phase2" },
+    { file: "phase2-1.html", label: "2.1 Building Production RAG Pipelines", phase: "phase2" },
     { file: "phase2-2.html", label: "2.2 MCP & Agent-to-Agent (A2A) Protocols", phase: "phase2" },
     { file: "phase2-3.html", label: "2.3 Enterprise GenAI Tooling & Platform Evaluation", phase: "phase2" },
     { file: "phase2-4.html", label: "2.4 GenAI Quality Evaluation & Testing", phase: "phase2" },
     { file: "phase2-5.html", label: "2.5 Observability & Monitoring for GenAI", phase: "phase2" },
     { file: "phase2-6.html", label: "2.6 GenAI Security & Data Protection", phase: "phase2" },
     { file: "phase2-quiz.html", label: "Phase 2 Knowledge Quiz", quizKey: "phase2", phase: "phase2" },
-    { file: "phase3-1.html", label: "3.1 Pega GenAI Architecture Patterns", phase: "phase3" },
-    { file: "phase3-2.html", label: "3.2 Deep Dive: Pega GenAI Product Suite", phase: "phase3" },
+    { file: "phase3-1.html", label: "3.1 GenAI Architecture Patterns", phase: "phase3" },
+    { file: "phase3-2.html", label: "3.2 Platform Capability Deep Dive", phase: "phase3" },
     { file: "phase3-3.html", label: "3.3 LLM Integration Paths & On-Premises Options", phase: "phase3" },
     { file: "phase3-4.html", label: "3.4 Multi-Agent Systems & AgentX Framework", phase: "phase3" },
     { file: "phase3-5.html", label: "3.5 GenAI Connect: Configuration & Walkthrough", phase: "phase3" },
     { file: "phase3-6.html", label: "3.6 CoE Best Practices & Enterprise Governance", phase: "phase3" },
     { file: "phase3-7.html", label: "3.7 Production Deployment & Enablement Requirements", phase: "phase3" },
-    { file: "phase3-quiz.html", label: "Phase 3 Knowledge Quiz", quizKey: "phase3", phase: "phase3" }
+    { file: "phase3-quiz.html", label: "Phase 3 Knowledge Quiz", quizKey: "phase3", phase: "phase3" },
+    { file: "phase4-1.html", label: "4.1 Pega AI Vision & Workflow AI", phase: "phase4" },
+    { file: "phase4-2.html", label: "4.2 Pega GenAI Product Portfolio", phase: "phase4" },
+    { file: "phase4-3.html", label: "4.3 Building RAG Pipelines in Pega", phase: "phase4" },
+    { file: "phase4-4.html", label: "4.4 Pega MCP, AgentX & Orchestration", phase: "phase4" },
+    { file: "phase4-5.html", label: "4.5 Pega Architecture & Integration Patterns", phase: "phase4" },
+    { file: "phase4-6.html", label: "4.6 Pega Operations, Governance & Deployment", phase: "phase4" },
+    { file: "phase4-quiz.html", label: "Phase 4 Knowledge Quiz", quizKey: "phase4", phase: "phase4" }
   ];
 
   // ── Helpers ────────────────────────────────────────────────────────────
@@ -246,7 +265,7 @@
 
   // ── Quiz pass state ────────────────────────────────────────────────────
   function loadState() {
-    var def = { phase1: { passed: false }, phase2: { passed: false }, phase3: { passed: false } };
+    var def = { phase1: { passed: false }, phase2: { passed: false }, phase3: { passed: false }, phase4: { passed: false } };
     try {
       var raw = localStorage.getItem(getProgressStorageKey(storageKey));
       return raw ? Object.assign(def, JSON.parse(raw) || {}) : def;
@@ -296,6 +315,7 @@
     if (currentFile.indexOf("phase1") === 0) phase = "phase1";
     else if (currentFile.indexOf("phase2") === 0) phase = "phase2";
     else if (currentFile.indexOf("phase3") === 0) phase = "phase3";
+    else if (currentFile.indexOf("phase4") === 0) phase = "phase4";
 
     document.querySelectorAll(".nav-links a").forEach(function (link) {
       var href = link.getAttribute("href") || "";
@@ -308,6 +328,11 @@
 
     var navLinks = document.querySelector(".nav-links");
     if (navLinks) {
+      if (!navLinks.querySelector('a[href="index.html#phase4"]')) {
+        var phase4Li = document.createElement("li");
+        phase4Li.innerHTML = "<a href=\"index.html#phase4\"" + (phase === "phase4" ? " class=\"active\"" : "") + ">Phase 4</a>";
+        navLinks.appendChild(phase4Li);
+      }
       var resLi = document.createElement("li");
       resLi.innerHTML = "<a href=\"resources.html\"" + (currentFile === "resources.html" ? " class=\"active\"" : "") + ">Resources</a>";
       navLinks.appendChild(resLi);
@@ -400,7 +425,7 @@
     var totalPages = contentPages.length;
     var visitedCount = contentPages.filter(function (p) { return visited[p.file]; }).length;
     var pct = totalPages > 0 ? Math.round((visitedCount / totalPages) * 100) : 0;
-    var p1 = quizState.phase1.passed, p2 = quizState.phase2.passed, p3 = quizState.phase3.passed;
+    var p1 = quizState.phase1.passed, p2 = quizState.phase2.passed, p3 = quizState.phase3.passed, p4 = quizState.phase4.passed;
     var widget = document.createElement("div");
     widget.className = "sidebar-progress";
     widget.innerHTML =
@@ -411,6 +436,7 @@
       + "<span class=\"sqstat" + (p1 ? " sqpass" : "") + "\">P1 " + (p1 ? "&#10003;" : "&mdash;") + "</span>"
       + "<span class=\"sqstat" + (p2 ? " sqpass" : "") + "\">P2 " + (p2 ? "&#10003;" : "&mdash;") + "</span>"
       + "<span class=\"sqstat" + (p3 ? " sqpass" : "") + "\">P3 " + (p3 ? "&#10003;" : "&mdash;") + "</span>"
+      + "<span class=\"sqstat" + (p4 ? " sqpass" : "") + "\">P4 " + (p4 ? "&#10003;" : "&mdash;") + "</span>"
       + "</div>";
     sidebar.insertBefore(widget, sidebar.firstChild);
   }
@@ -443,7 +469,7 @@
       "phase1-2.html": "When comparing models, teams should run the same benchmark prompts across options and evaluate not only answer quality, but also latency, consistency, and cost at realistic token volumes. This creates a decision record that can be reused when models are upgraded or replaced.",
       "phase1-3.html": "Prompt quality improves fastest when teams maintain a small prompt library with version history, expected outputs, and failure examples. Treating prompts as testable assets helps reduce regressions when system instructions, model versions, or retrieval context changes.",
       "phase1-4.html": "Mature RAG implementations also define fallback behavior for low-confidence retrieval, such as asking a clarifying question or escalating to a human. This prevents confident but weakly grounded responses and improves trust in high-stakes workflows.",
-      "phase1-5.html": "Architecture decisions become simpler when each product capability is mapped to a specific lifecycle stage: discover, design, build, run, and optimize. This avoids overloading one tool and creates clearer ownership for enablement, governance, and support.",
+      "phase1-5.html": "Product landscape decisions become simpler when each capability is mapped to a specific lifecycle stage: discover, design, build, run, and optimize. This avoids overloading one tool and creates clearer ownership for enablement, governance, and support.",
       "phase1-6.html": "An effective governance baseline includes risk classification, red-team testing cadence, approval checkpoints, and evidence retention. These controls should be proportional to impact, so low-risk assistants remain fast while high-impact workflows remain auditable and safe.",
       "phase2-1.html": "Operationally, teams should plan index refresh frequency and source ownership from day one. RAG quality often degrades because content freshness and metadata governance are treated as afterthoughts rather than first-class parts of the architecture.",
       "phase2-2.html": "In production, protocol choices should be paired with explicit authorization boundaries so agents can only invoke approved tools for their role. This combination of protocol standardization and least privilege is what makes multi-agent systems maintainable at scale.",
@@ -452,12 +478,18 @@
       "phase2-5.html": "Observability should include user-centered measures like rework rate, escalation frequency, and time-to-resolution, not just technical metrics. These indicators reveal whether AI is genuinely improving business outcomes rather than only system performance.",
       "phase2-6.html": "Security reviews should validate the full execution chain: prompt input, retrieval context, model output, and downstream actions. Most serious incidents happen at boundaries between components, so end-to-end threat modeling is critical.",
       "phase3-1.html": "Reference architectures are most valuable when they are accompanied by implementation guardrails, such as approved integration patterns and reusable templates. This turns architecture from static documentation into an accelerator for delivery teams.",
-      "phase3-2.html": "Portfolio depth pays off when solution teams define capability handoff points early, for example where Blueprint output becomes build-time assets and where runtime assistants consume governed knowledge sources. Clear handoffs reduce rework during scaling.",
+      "phase3-2.html": "Platform comparisons become clearer when teams define capability handoff points early, for example where design-time tooling ends and runtime orchestration begins. Clear handoffs reduce rework during scaling.",
       "phase3-3.html": "Integration strategy should be reviewed periodically as policy, model capabilities, and cost structures evolve. A design that starts cloud-first can transition to hybrid for sensitive workloads without major disruption if abstraction boundaries are respected.",
       "phase3-4.html": "Multi-agent orchestration should include explicit conflict-resolution rules for inconsistent agent outputs. Determining precedence, confidence thresholds, and human override paths prevents brittle behavior in real-world, ambiguous scenarios.",
       "phase3-5.html": "Connector reliability improves when teams standardize prompt contracts and output schemas, then validate them in pre-production with representative data. This reduces runtime parsing errors and makes downstream workflow behavior more predictable.",
       "phase3-6.html": "A strong CoE publishes reusable playbooks and starter artifacts, then measures adoption quality across teams. Governance is most effective when it enables delivery speed while maintaining evidence-based controls across the portfolio.",
-      "phase3-7.html": "Before go-live, run a readiness drill that simulates incidents such as model outage, low-quality responses, and access-control failures. Rehearsing these scenarios validates runbooks, ownership, and communication paths under pressure."
+      "phase3-7.html": "Before go-live, run a readiness drill that simulates incidents such as model outage, low-quality responses, and access-control failures. Rehearsing these scenarios validates runbooks, ownership, and communication paths under pressure.",
+      "phase4-1.html": "Pega's distinctive value is not the model alone but the way AI is embedded inside cases, workflows, and decisioning. When reviewing Pega use cases, look for where governed workflow context materially improves adoption and control.",
+      "phase4-2.html": "Pega portfolio choices become easier when each product is mapped to a stage in the delivery lifecycle. Design-time, runtime assistance, retrieval, orchestration, and model connectivity solve different problems and should not be treated as interchangeable.",
+      "phase4-3.html": "For Pega RAG implementations, document freshness, permissions, and source ownership are usually more important than model novelty. The best outcomes come from disciplined knowledge operations, not just better prompts.",
+      "phase4-4.html": "MCP and AgentX patterns work best when tool contracts, authorization boundaries, and escalation rules are explicit. This keeps agent behavior governable as more skills and tools are added.",
+      "phase4-5.html": "Pega architecture patterns scale when integration points are standardized and model dependencies remain behind clear abstraction boundaries. That design makes provider changes and control updates less disruptive.",
+      "phase4-6.html": "Production readiness in Pega depends on the same discipline as any enterprise workflow system: runbooks, telemetry, gated automation, and clear ownership for operational failure modes."
     };
 
     var extra = depthByPage[currentFileName] || "As you continue, map each concept to a real workflow in your environment and define how you will measure outcome quality over time. This turns conceptual understanding into an operational plan that can be tested, improved, and governed.";

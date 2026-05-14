@@ -11,7 +11,8 @@
 		a:hover { text-decoration: underline; color: var(--pega-orange); }
 		nav { position: sticky; top: 0; z-index: 1000; background: var(--pega-navy); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 		.nav-brand { display: flex; align-items: center; gap: 0.75rem; color: #fff; font-size: 1.1rem; font-weight: 700; }
-		.nav-logo { width: 36px; height: 36px; background: var(--pega-orange); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 1.1rem; }
+	.nav-logo { width: auto; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 1.1rem; }
+	.nav-logo img { height: 40px; width: auto; }
 		.nav-links { display: flex; gap: 1.5rem; list-style: none; }
 		.nav-links a { color: rgba(255,255,255,0.8); font-size: 0.82rem; font-weight: 500; transition: color 0.2s; }
 		.nav-links a:hover { color: var(--pega-orange); text-decoration: none; }
@@ -42,6 +43,7 @@
 		.phase-nav a { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.2rem; color: var(--pega-muted); font-size: 0.82rem; font-weight: 600; border-bottom: 3px solid transparent; margin-bottom: -3px; white-space: nowrap; transition: all 0.2s; }
 		.phase-nav a:hover { color: var(--pega-blue); border-bottom-color: var(--pega-blue); text-decoration: none; }
 		.phase-nav a.active { color: var(--pega-blue); border-bottom-color: var(--pega-orange); }
+		.page-hero.phase4 { background: linear-gradient(135deg, #1a4d3a, #28785a); }
 		.case-flow-wrap { background: var(--pega-white); border-bottom: 1px solid var(--pega-border); }
 		.case-flow-box { margin: 2rem 0 1.25rem; background: linear-gradient(135deg, rgba(0,87,168,0.06), rgba(0,163,224,0.08)); border: 1px solid var(--pega-border); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--pega-shadow); }
 		.case-flow-title { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; font-size: 0.95rem; font-weight: 700; color: var(--pega-navy); }
@@ -207,13 +209,16 @@
 .phase-links a { display: block; padding: 0.45rem 0.55rem; border-radius: 6px; background: rgba(0,87,168,0.04); font-size: 0.82rem; }
 .phase-links a:hover { text-decoration: none; background: rgba(0,87,168,0.08); }
 .overview-actions { margin-top: 0.85rem; display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.85rem; }
-.mini-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1.5rem 0 2rem; }
+.mini-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin: 1.5rem 0 2rem; }
 .mini-flow-card { background: var(--pega-white); border: 1px solid var(--pega-border); border-radius: var(--radius); padding: 1rem; box-shadow: var(--pega-shadow); }
 .mini-flow-card h4 { color: var(--pega-navy); font-size: 0.88rem; margin-bottom: 0.3rem; }
 .mini-flow-card p { color: var(--pega-muted); font-size: 0.78rem; }
 .content-card { background: var(--pega-white); border: 1px solid var(--pega-border); border-radius: var(--radius); box-shadow: var(--pega-shadow); padding: 1.25rem; }
 .content-card h2 { color: var(--pega-navy); margin-bottom: 0.4rem; }
 .content-card p { color: var(--pega-muted); }
+.home-overview-card { background: linear-gradient(135deg, #ffffff, #f5f8ff); }
+.home-overview-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.pega-logo-home { width: 200px; max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 3px 12px rgba(0,31,91,0.18); border: 1px solid rgba(0,31,91,0.18); }
 [data-topic-guide-depth="true"] { margin-top: 0.95rem; padding-top: 0.8rem; border-top: 1px dashed rgba(0,87,168,0.28); color: #47506a; font-size: 0.84rem; }
 .page-sequence-progress { position: sticky; top: 60px; z-index: 950; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--pega-border); box-shadow: 0 2px 12px rgba(0,31,91,0.06); }
 .page-sequence-progress .container { display: flex; align-items: center; gap: 1rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }

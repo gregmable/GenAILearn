@@ -10,7 +10,7 @@
 <body class="page-phase1">
 <nav>
     <div class="nav-brand">
-        <div class="nav-logo">P</div>
+        <div class="nav-logo"><img src="assets/pega-logo.svg" alt="Pega GenAI Learning Path" /></div>
         <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
     </div>
     <ul class="nav-links">
@@ -26,17 +26,17 @@
     <div class="page-hero phase1">
       <div class="hero-badge">Objective 1.3 &middot; ~2.5h</div>
       <h1>Prompt Engineering Fundamentals</h1>
-      <p>Master the principles of effective prompt design: zero-shot vs few-shot, chain-of-thought, system prompts, and Pega&rsquo;s built-in prompt masking capabilities for PII protection.</p>
+      <p>Master the principles of effective prompt design: zero-shot vs few-shot, chain-of-thought, system prompts, and the platform&rsquo;s built-in prompt masking capabilities for PII protection.</p>
     </div>
     <div class="page-layout">
       <div class="sidebar-card">
 <h3>Phase 1 Directory</h3>
 <div class="directory-section-label">Objectives</div>
-<a class="directory-link" href="phase1-1.html">1.1 · GenAI Fundamentals &amp; Pega's AI Vision</a>
+<a class="directory-link" href="phase1-1.html">1.1 · GenAI Fundamentals &amp; Enterprise AI Vision</a>
 <a class="directory-link" href="phase1-2.html">1.2 · Large Language Models (LLMs) &amp; Architecture</a>
 <a class="directory-link current" href="phase1-3.html">1.3 · Prompt Engineering Fundamentals</a>
 <a class="directory-link" href="phase1-4.html">1.4 · Retrieval-Augmented Generation (RAG)</a>
-<a class="directory-link" href="phase1-5.html">1.5 · Pega GenAI Product Portfolio Overview</a>
+<a class="directory-link" href="phase1-5.html">1.5 · AI Product Portfolio Overview</a>
 <a class="directory-link" href="phase1-6.html">1.6 · AI Ethics, Governance &amp; Responsible AI</a>
 <div class="directory-section-label">Assessment</div>
 <a class="directory-link" href="phase1-quiz.html" data-quiz-link="phase1">Phase 1 Quiz</a>
@@ -50,7 +50,7 @@
 				<span class="duration">~2.5h</span>
 			</div>
 			<div class="obj-card-body">
-				<p class="obj-desc">Master the principles of effective prompt design: zero-shot vs few-shot, chain-of-thought, system prompts, and Pega&rsquo;s built-in prompt masking capabilities for PII protection.</p>
+				<p class="obj-desc">Master the principles of effective prompt design: zero-shot vs few-shot, chain-of-thought, system prompts, and the platform&rsquo;s built-in prompt masking capabilities for PII protection.</p>
 				<div class="two-col">
 					<div>
 						<div class="resource-group">
@@ -59,7 +59,7 @@
 								<li>Zero-shot, one-shot, few-shot prompting</li>
 								<li>Chain-of-thought &amp; reasoning prompts</li>
 								<li>System vs user vs assistant roles</li>
-								<li>Pega Prompt Masking (automatic PII redaction)</li>
+								<li>Platform Prompt Masking (automatic PII redaction)</li>
 								<li>Temperature, top-p, max tokens tuning</li>
 							</ul>
 						</div>
@@ -74,7 +74,7 @@
 						</div>
 						<div class="callout">
 							<span class="ci">&#128274;</span>
-							<div><strong>Pega Prompt Masking:</strong> Automatically redacts PII from prompts before they reach the LLM, then re-injects data in the response. Zero config required.</div>
+							<div><strong>Platform Prompt Masking:</strong> Automatically redacts PII from prompts before they reach the LLM, then re-injects data in the response. Zero config required.</div>
 						</div>
 					</div>
 				</div>
@@ -85,9 +85,9 @@
 			<h2>Prompt Engineering Principles</h2>
 			<div class="card-grid card-grid-3 mt1">
 				<div class="card">
-					<div class="resource-source">Pega Academy</div>
-					<p>Pega training path for prompt construction, GenAI messaging patterns, and practical usage guidance.</p>
-					<p style="margin-top:0.75rem;"><a href="https://academy.pega.com/mission/accelerated-solution-design-pega-blueprint/v1" target="_blank">Prompt Engineering learning mission</a></p>
+					<div class="resource-source">Platform Academy</div>
+					<p>Platform training path for prompt construction, GenAI messaging patterns, and practical usage guidance.</p>
+					<p style="margin-top:0.75rem;"><a href="phase4-2.html" target="_blank">Prompt Engineering learning mission</a></p>
 				</div>
 				<div class="card">
 					<div class="resource-source">Coursera</div>
@@ -105,13 +105,47 @@
 			<div class="eyebrow">Topic Guide</div>
 			<h2>Designing Better Prompts</h2>
 			<p>Prompt engineering is the discipline of giving the model enough direction to produce useful, repeatable output without overwhelming it with noise. A strong prompt defines the role, task, audience, available context, output format, and any constraints the model must honor. When a prompt is vague, the model fills in the gaps with statistically plausible guesses, which is often where poor quality and hallucinations begin.</p>
-			<p>In enterprise delivery, prompts should be treated like application assets. They need versioning, review, testing, and explicit alignment to a business outcome. Pega teams usually get the best results by separating stable system instructions from user input, grounding responses with retrieved context, and specifying what the model must not do. That structure reduces drift and makes the behavior easier to evaluate over time.</p>
+			<p>In enterprise delivery, prompts should be treated like application assets. They need versioning, review, testing, and explicit alignment to a business outcome. Platform teams usually get the best results by separating stable system instructions from user input, grounding responses with retrieved context, and specifying what the model must not do. That structure reduces drift and makes the behavior easier to evaluate over time.</p>
 			<ul class="feature-list mt1">
 				<li><strong>Role</strong> tells the model what stance or expertise to adopt.</li>
 				<li><strong>Context</strong> supplies the facts, examples, or retrieved knowledge it should use.</li>
 				<li><strong>Constraints</strong> limit tone, scope, format, and safety boundaries.</li>
 				<li><strong>Evaluation</strong> checks whether the prompt produces consistent output across realistic inputs.</li>
 			</ul>
+		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">AI Tools Section</div>
+			<h2>AI Tools in Daily Work: Copilot, Claude, and More</h2>
+			<p>Prompting skills become much more valuable when you apply them in real tools that teams already use. This section introduces practical usage patterns for coding assistants and general-purpose chat assistants so learners can choose the right tool for each task.</p>
+			<div class="card-grid card-grid-3 mt1">
+				<div class="card">
+					<div class="resource-source">GitHub Copilot</div>
+					<p>Best for in-editor code generation, refactoring, test scaffolding, and repository-aware chat inside development workflows.</p>
+					<ul class="resource-list mt1">
+						<li>Use for implementation and code explanation tasks tied to your project files.</li>
+						<li>Pair with explicit constraints, expected output format, and acceptance criteria.</li>
+						<li><a href="https://github.com/features/copilot" target="_blank">Product overview</a></li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="resource-source">Claude</div>
+					<p>Strong for long-form reasoning, policy summarization, structured drafting, and analysis over larger context windows.</p>
+					<ul class="resource-list mt1">
+						<li>Use for synthesis tasks, decision memos, and requirements decomposition.</li>
+						<li>Request bulletized assumptions and confidence notes for traceability.</li>
+						<li><a href="https://claude.ai" target="_blank">Product overview</a></li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="resource-source">Tool Selection Guide</div>
+					<ul class="feature-list">
+						<li><strong>Build code in repo:</strong> prefer Copilot.</li>
+						<li><strong>Deep synthesis and writing:</strong> prefer Claude.</li>
+						<li><strong>Knowledge-grounded answers:</strong> use RAG-enabled enterprise assistants.</li>
+						<li><strong>Production workflows:</strong> use governed tools with logging and approval paths.</li>
+					</ul>
+				</div>
+			</div>
 		</div>
         <div class="pager"><a class="btn btn-outline" href="phase1-2.html">&larr; Previous</a><a class="btn btn-primary" href="phase1-4.html">Next &rarr;</a></div>
       </div>
@@ -120,7 +154,7 @@
 </main>
 <footer class="page-shell-footer">
     <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
-    Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+    Platform Systems &middot; May 2026 &middot; Multi-page learning experience<br>
     <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
 </footer>
 </body>
