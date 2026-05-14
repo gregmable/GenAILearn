@@ -130,6 +130,35 @@
 				<li><strong>Response design</strong> should make citations and confidence cues visible to the user.</li>
 			</ul>
 		</div>
+		<div class="content-card mt1">
+			<div class="eyebrow">Advanced Retrieval</div>
+			<h2>Advanced RAG Patterns for Enterprise Scale</h2>
+			<p>Basic semantic top-K retrieval is often enough for early pilots, but enterprise assistants usually need higher precision and better reasoning support. Advanced RAG patterns combine retrieval strategies so the model gets both relevant and complete context under strict token and latency limits. These patterns are especially important for policy-heavy domains such as claims, compliance, and service operations where partial context can lead to wrong recommendations.</p>
+			<div class="two-col mt1">
+				<div>
+					<div class="resource-group">
+						<div class="resource-source">Core Patterns</div>
+						<ul class="feature-list">
+							<li><strong>Hybrid retrieval</strong> combines vector search and keyword/BM25 for stronger recall on exact terms and semantic variants.</li>
+							<li><strong>Reranking</strong> uses a second-stage model to reorder results by task relevance before prompt assembly.</li>
+							<li><strong>Query decomposition</strong> breaks complex questions into smaller retrieval tasks and merges grounded evidence.</li>
+							<li><strong>Multi-hop retrieval</strong> chains context across related documents when one source is not sufficient.</li>
+						</ul>
+					</div>
+				</div>
+				<div>
+					<div class="resource-group">
+						<div class="resource-source">Tuning Checklist</div>
+						<ul class="feature-list">
+							<li>Define chunk strategy per document type: policy, procedure, knowledge article, or case note.</li>
+							<li>Version retrieval settings and evaluate with fixed benchmark questions before production promotion.</li>
+							<li>Log hit-rate, citation usefulness, and no-answer frequency as first-class quality metrics.</li>
+							<li>Use abstain behavior when evidence quality is weak instead of forcing a full answer.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
         <div class="pager"><a class="btn btn-outline" href="phase1-quiz.html">&larr; Previous</a><a class="btn btn-primary" href="phase2-2.html">Next &rarr;</a></div>
       </div>
     </div>

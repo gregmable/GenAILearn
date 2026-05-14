@@ -124,6 +124,27 @@
         <div><strong>Selection rule:</strong> start with the workload's data sensitivity and approval requirements, then choose the simplest integration path that satisfies those constraints.</div>
       </div>
     </div>
+    <div class="content-card mt1">
+      <div class="eyebrow">Decision Framework</div>
+      <h2>Fine-Tuning vs RAG: When to Use Each</h2>
+      <p>Teams often treat fine-tuning and RAG as competing approaches, but they solve different problems. RAG is usually the first choice when answers depend on frequently changing enterprise knowledge. Fine-tuning is more suitable when the model needs stable behavior changes such as style control, domain-specific classification patterns, or specialized output structure. In production architectures, many organizations use both: RAG for fresh facts and fine-tuning for consistent behavior.</p>
+      <table class="data-table mt1">
+        <thead>
+          <tr><th>Question</th><th>Prefer RAG</th><th>Prefer Fine-Tuning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Does knowledge change weekly?</td><td>Yes, update index and retrieval rules.</td><td>No, retraining becomes expensive and slow.</td></tr>
+          <tr><td>Need strict output format and tone?</td><td>Possible with prompt templates.</td><td>Stronger for stable behavior shaping.</td></tr>
+          <tr><td>Need source citations and traceability?</td><td>Native fit with grounded retrieval.</td><td>Not a direct citation mechanism.</td></tr>
+          <tr><td>Data privacy and governance burden?</td><td>Lower; keep source data internal.</td><td>Higher; training data lifecycle must be governed.</td></tr>
+          <tr><td>Time to deliver first value?</td><td>Usually faster for enterprise rollouts.</td><td>Longer due to curation and evaluation cycles.</td></tr>
+        </tbody>
+      </table>
+      <div class="callout mt1">
+        <span class="ci">&#9989;</span>
+        <div><strong>Practical rule:</strong> start with RAG, prove value, then add fine-tuning only when repeated quality gaps cannot be solved through retrieval, prompt engineering, or tool orchestration.</div>
+      </div>
+    </div>
         <div class="pager"><a class="btn btn-outline" href="phase3-2.html">&larr; Previous</a><a class="btn btn-primary" href="phase3-4.html">Next &rarr;</a></div>
       </div>
     </div>

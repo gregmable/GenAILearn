@@ -87,6 +87,35 @@
         <li><strong>Regression testing</strong> ensures improvements in one scenario do not break another.</li>
       </ul>
     </div>
+    <div class="content-card mt1">
+      <div class="eyebrow">Reliability Playbook</div>
+      <h2>Hallucination Detection and Mitigation</h2>
+      <p>Hallucinations are not random glitches; they usually appear when evidence is weak, ambiguous, or missing. Mature teams treat hallucination management as an explicit operating practice with measurable controls. The objective is to minimize unsupported claims, surface uncertainty clearly, and avoid confident but incorrect action recommendations in user workflows.</p>
+      <div class="two-col mt1">
+        <div>
+          <div class="resource-group">
+            <div class="resource-source">Detection Signals</div>
+            <ul class="feature-list">
+              <li><strong>Citation mismatch</strong>: answer statements are not grounded in retrieved sources.</li>
+              <li><strong>Unsupported specificity</strong>: precise values appear without evidence.</li>
+              <li><strong>Confidence drift</strong>: high-confidence language with low retrieval relevance.</li>
+              <li><strong>Cross-turn inconsistency</strong>: the assistant contradicts previous verified facts.</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="resource-group">
+            <div class="resource-source">Mitigation Controls</div>
+            <ul class="feature-list">
+              <li>Require citation output for high-stakes responses and hide uncited claims from final answer text.</li>
+              <li>Use abstain mode: "I do not have enough verified context" when relevance thresholds are low.</li>
+              <li>Route risky or low-confidence answers to human review before action execution.</li>
+              <li>Track hallucination rate per use case and block production promotion on threshold breach.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
         <div class="pager"><a class="btn btn-outline" href="phase2-3.html">&larr; Previous</a><a class="btn btn-primary" href="phase2-5.html">Next &rarr;</a></div>
       </div>
     </div>
