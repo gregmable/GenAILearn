@@ -188,7 +188,9 @@
 .page-hero h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 0.55rem; }
 .page-hero p { color: rgba(255,255,255,0.8); max-width: 760px; }
 .page-layout { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; align-items: start; }
+.page-layout.sidebar-panel-collapsed { grid-template-columns: 56px 1fr; }
 .sidebar-card { background: var(--pega-white); border: 1px solid var(--pega-border); border-radius: var(--radius); box-shadow: var(--pega-shadow); padding: 1rem; position: sticky; top: 84px; }
+.sidebar-card.sidebar-collapsed { padding: 0.55rem 0.45rem; }
 .sidebar-card h3 { color: var(--pega-navy); font-size: 0.95rem; margin-bottom: 0.75rem; }
 .directory-link { display: block; padding: 0.55rem 0.7rem; border-radius: 6px; color: var(--pega-text); font-size: 0.82rem; margin-bottom: 0.3rem; border: 1px solid transparent; background: transparent; }
 .directory-link:hover { text-decoration: none; background: rgba(0,87,168,0.06); border-color: rgba(0,87,168,0.14); }
@@ -252,11 +254,14 @@
 .sqstat { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(90,100,120,0.10); color: var(--pega-muted); border: 1px solid var(--pega-border); }
 .sqstat.sqpass { background: rgba(26,122,50,0.10); color: #1a7a32; border-color: rgba(26,122,50,0.25); }
 /* ── Mobile sidebar toggle ─────────────────────────────────────────── */
-.sidebar-toggle { display: none; width: 100%; text-align: left; background: transparent; border: none; cursor: pointer; padding: 0.4rem 0.5rem 0.85rem; font-size: 0.88rem; font-weight: 700; color: var(--pega-navy); gap: 0.5rem; }
+.sidebar-toggle { display: flex; width: 100%; text-align: left; background: transparent; border: none; cursor: pointer; padding: 0.4rem 0.5rem 0.85rem; font-size: 0.88rem; font-weight: 700; color: var(--pega-navy); gap: 0.5rem; }
 .sidebar-toggle-icon { font-size: 1rem; }
 .sidebar-card.sidebar-collapsed .directory-link,
 .sidebar-card.sidebar-collapsed .directory-section-label,
-.sidebar-card.sidebar-collapsed h3 { display: none; }
+.sidebar-card.sidebar-collapsed h3,
+.sidebar-card.sidebar-collapsed .sidebar-progress { display: none; }
+.sidebar-card.sidebar-collapsed .sidebar-toggle { justify-content: center; padding: 0.45rem; }
+.sidebar-card.sidebar-collapsed .sidebar-toggle-label { display: none; }
 /* ── Keyboard nav hint ─────────────────────────────────────────────── */
 .next-trail-kb { font-size: 0.72rem; color: var(--pega-muted); margin-top: 0.25rem; font-style: italic; }
 /* ── Glossary styles ───────────────────────────────────────────────── */
@@ -293,9 +298,9 @@
 	.page-sequence-progress .container { flex-direction: column; align-items: flex-start; }
 	.page-sequence-copy, .page-sequence-meta { min-width: 0; white-space: normal; }
   .page-layout { grid-template-columns: 1fr; }
+	.page-layout.sidebar-panel-collapsed { grid-template-columns: 1fr; }
   .sidebar-card { position: static; }
   .mini-flow { grid-template-columns: 1fr; }
 	.user-summary-grid { grid-template-columns: 1fr; }
-  .sidebar-toggle { display: flex; align-items: center; }
 	.next-trail { flex-direction: column; align-items: flex-start; }
 }

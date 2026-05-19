@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/phase1-5.html",
+      "destination": "/phase4-7.html",
+      "permanent": true
+    }
+  ]
+}

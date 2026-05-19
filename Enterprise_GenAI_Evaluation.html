@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise GenAI Tooling & Platform Evaluation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        nav {
+            background: #f8f9fa;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        nav a {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: #667eea;
+            text-decoration: none;
+            border-right: 1px solid #ddd;
+            font-weight: 500;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        
+        nav a:hover {
+            background: #e8eef7;
+        }
+        
+        nav a.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        main {
+            padding: 40px;
+        }
+        
+        section {
+            display: none;
+        }
+        
+        section.active {
+            display: block;
+        }
+        
+        section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        section h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        section h4 {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .subsection {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .comparison-card h4 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+        
+        .strength {
+            color: #27ae60;
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .strength::before {
+            content: "✓";
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        
+        .limitation {
+            color: #e74c3c;
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .limitation::before {
+            content: "✗";
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .code-block pre {
+            margin: 0;
+        }
+        
+        .rating {
+            display: flex;
+            gap: 4px;
+            margin: 10px 0;
+        }
+        
+        .star {
+            color: #ffc107;
+            font-size: 1.2em;
+        }
+        
+        .star.empty {
+            color: #ddd;
+        }
+        
+        .use-case-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .architecture-diagram {
+            background: #f8f9fa;
+            border: 2px dashed #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .checklist li::before {
+            content: "□";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+        
+        .checklist li.completed::before {
+            content: "✓";
+            color: #27ae60;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 0 4px 4px 0;
+        }
+        
+        .badge.success {
+            background: #27ae60;
+        }
+        
+        .badge.warning {
+            background: #f39c12;
+        }
+        
+        .badge.danger {
+            background: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            nav {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            main {
+                padding: 20px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Enterprise GenAI Tooling & Platform Evaluation</h1>
+            <p>Comprehensive Analysis of Claude, GitHub Copilot, and Agent SDKs</p>
+        </header>
+        
+        <nav>
+            <a class="nav-link active" onclick="showSection('overview')">Overview</a>
+            <a class="nav-link" onclick="showSection('claude-vscode')">Claude & VS Code</a>
+            <a class="nav-link" onclick="showSection('codex')">GitHub Copilot (Codex)</a>
+            <a class="nav-link" onclick="showSection('agents')">Agent SDKs</a>
+            <a class="nav-link" onclick="showSection('comparison')">Comparison</a>
+            <a class="nav-link" onclick="showSection('deployment')">Deployment</a>
+            <a class="nav-link" onclick="showSection('roadmap')">Roadmap</a>
+        </nav>
+        
+        <main>
+            <!-- Overview Section -->
+            <section id="overview" class="active">
+                <h2>Executive Overview</h2>
+                <p>This evaluation covers three key enterprise GenAI tooling domains:</p>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>🤖 Claude & VS Code</h4>
+                        <p><strong>Primary Use:</strong> Developer productivity, code generation, and IDE integration</p>
+                        <p><strong>Model:</strong> Claude (Anthropic)</p>
+                        <p><strong>Best For:</strong> Individual developers and small teams</p>
+                        <div class="badge badge.success">High Productivity</div>
+                        <div class="badge">IDE Native</div>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>💻 GitHub Copilot (Codex)</h4>
+                        <p><strong>Primary Use:</strong> Code completion, testing, documentation</p>
+                        <p><strong>Model:</strong> GPT-4 based (OpenAI partnership)</p>
+                        <p><strong>Best For:</strong> Large developer teams with GitHub workflows</p>
+                        <div class="badge badge.success">Team Collaboration</div>
+                        <div class="badge">CLI Support</div>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>🔧 Agent SDKs</h4>
+                        <p><strong>Primary Use:</strong> Autonomous workflows, API integration, enterprise automation</p>
+                        <p><strong>Frameworks:</strong> Foundry, LangChain, OpenAI Assistants, MCP</p>
+                        <p><strong>Best For:</strong> Production agents and system automation</p>
+                        <div class="badge badge.success">Enterprise Ready</div>
+                        <div class="badge">Customizable</div>
+                    </div>
+                </div>
+                
+                <h3>Key Metrics by Category</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Development Speed</th>
+                            <th>Enterprise Support</th>
+                            <th>Customization</th>
+                            <th>Cost Efficiency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Claude + VS Code</strong></td>
+                            <td><span class="rating"><span class="star">★★★★★</span></span></td>
+                            <td><span class="rating"><span class="star">★★★★☆</span></span></td>
+                            <td><span class="rating"><span class="star">★★☆☆☆</span></span></td>
+                            <td><span class="rating"><span class="star">★★★☆☆</span></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>GitHub Copilot</strong></td>
+                            <td><span class="rating"><span class="star">★★★★★</span></span></td>
+                            <td><span class="rating"><span class="star">★★★★★</span></span></td>
+                            <td><span class="rating"><span class="star">★★☆☆☆</span></span></td>
+                            <td><span class="rating"><span class="star">★★★★☆</span></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Agent SDKs</strong></td>
+                            <td><span class="rating"><span class="star">★★★☆☆</span></span></td>
+                            <td><span class="rating"><span class="star">★★★★★</span></span></td>
+                            <td><span class="rating"><span class="star">★★★★★</span></span></td>
+                            <td><span class="rating"><span class="star">★★★★☆</span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Claude & VS Code Section -->
+            <section id="claude-vscode">
+                <h2>Claude & Visual Studio Code</h2>
+                
+                <div class="subsection">
+                    <h3>Overview</h3>
+                    <p>Claude is Anthropic's advanced AI model available through VS Code via GitHub Copilot Chat and integrated extensions. It provides developers with real-time code suggestions, intelligent refactoring, and conversational assistance.</p>
+                </div>
+                
+                <h3>Key Features</h3>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li><strong>Inline Completions:</strong> Real-time code suggestions as you type</li>
+                    <li><strong>Chat Interface:</strong> Natural language interaction with special commands</li>
+                    <li><strong>Code Actions:</strong> Quick fixes with ⌘. shortcut</li>
+                    <li><strong>Multi-file Context:</strong> Understands entire codebase architecture</li>
+                    <li><strong>Extended Context Window:</strong> Support for large file uploads</li>
+                </ul>
+                
+                <h3>Supported Commands</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                            <th>Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/fix</code></td>
+                            <td>Fix bugs and errors</td>
+                            <td>Code corrections and debugging</td>
+                        </tr>
+                        <tr>
+                            <td><code>/explain</code></td>
+                            <td>Explain code functionality</td>
+                            <td>Understanding legacy code</td>
+                        </tr>
+                        <tr>
+                            <td><code>/tests</code></td>
+                            <td>Generate test cases</td>
+                            <td>Unit and integration testing</td>
+                        </tr>
+                        <tr>
+                            <td><code>/docs</code></td>
+                            <td>Generate documentation</td>
+                            <td>API documentation</td>
+                        </tr>
+                        <tr>
+                            <td><code>/help</code></td>
+                            <td>Get command help</td>
+                            <td>CLI assistance</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Strengths</h3>
+                <div class="subsection">
+                    <div class="strength">Deep code comprehension across languages</div>
+                    <div class="strength">Natural language conversations for complex problems</div>
+                    <div class="strength">Comprehensive refactoring suggestions</div>
+                    <div class="strength">Security vulnerability detection</div>
+                    <div class="strength">Enterprise SSO support</div>
+                </div>
+                
+                <h3>Limitations</h3>
+                <div class="subsection">
+                    <div class="limitation">Cannot access real-time information</div>
+                    <div class="limitation">Cloud-only processing (some compliance concerns)</div>
+                    <div class="limitation">Occasional hallucinations in edge cases</div>
+                    <div class="limitation">Per-seat licensing costs at scale</div>
+                </div>
+                
+                <h3>Enterprise Licensing</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Cost</th>
+                            <th>Users</th>
+                            <th>Key Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Copilot Pro</td>
+                            <td>$20/mo</td>
+                            <td>Individual</td>
+                            <td>Unlimited requests, priority</td>
+                        </tr>
+                        <tr>
+                            <td>Copilot Business</td>
+                            <td>$19/user/mo</td>
+                            <td>Teams</td>
+                            <td>Admin controls, billing</td>
+                        </tr>
+                        <tr>
+                            <td>Copilot Enterprise</td>
+                            <td>$39/user/mo</td>
+                            <td>Large Orgs</td>
+                            <td>Fine-tuned models, custom repo context</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Codex Section -->
+            <section id="codex">
+                <h2>GitHub Copilot (Codex)</h2>
+                
+                <div class="subsection">
+                    <h3>Overview</h3>
+                    <p>GitHub Copilot, powered by Codex technology, is a comprehensive code intelligence platform available across IDEs, CLI, and APIs. It integrates seamlessly with GitHub workflows for development and deployment automation.</p>
+                </div>
+                
+                <h3>Codex Model Evolution</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Version</th>
+                            <th>Release</th>
+                            <th>Improvements</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Codex-001</td>
+                            <td>Jun 2021</td>
+                            <td>Initial, Python focus</td>
+                            <td>Deprecated</td>
+                        </tr>
+                        <tr>
+                            <td>Codex-002</td>
+                            <td>Nov 2021</td>
+                            <td>Multi-language, broader</td>
+                            <td>Deprecated</td>
+                        </tr>
+                        <tr>
+                            <td>GPT-4 Based</td>
+                            <td>2024+</td>
+                            <td>Enhanced reasoning</td>
+                            <td>Current</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Product Components</h3>
+                
+                <h4>1. Copilot Chat</h4>
+                <div class="subsection">
+                    <p>Conversational AI for IDE and browser with specialized commands:</p>
+                    <div class="code-block"><pre>
+/explain   - Explain selected code
+/tests     - Generate test cases
+/fix       - Fix bugs and issues
+/docs      - Generate documentation
+/help      - CLI command assistance
+/clear     - Clear conversation history
+                    </pre></div>
+                </div>
+                
+                <h4>2. Copilot CLI</h4>
+                <div class="subsection">
+                    <p>Command-line AI assistance for terminal workflows:</p>
+                    <div class="code-block"><pre>
+# Explain shell commands
+gh copilot explain "git merge --squash"
+
+# Generate commands
+gh copilot suggest "list all Python files"
+
+# Fix shell errors
+gh copilot explain "error: pathspec 'main' did not match"
+                    </pre></div>
+                </div>
+                
+                <h4>3. Copilot API</h4>
+                <div class="subsection">
+                    <p>Programmatic integration for custom tools and workflows</p>
+                </div>
+                
+                <h3>Enterprise Features</h3>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li><strong>Organization Management:</strong> Centralized seat provisioning</li>
+                    <li><strong>IP Protection:</strong> Opt-out of training data sharing</li>
+                    <li><strong>Content Exclusion:</strong> Exclude sensitive repositories</li>
+                    <li><strong>Usage Analytics:</strong> Track adoption and ROI</li>
+                    <li><strong>SAML/SSO:</strong> Enterprise authentication</li>
+                    <li><strong>Proxy Support:</strong> Firewall integration</li>
+                </ul>
+                
+                <h3>Security & Compliance</h3>
+                <div class="subsection">
+                    <ul>
+                        <li>✓ SOC 2 Type II certified</li>
+                        <li>✓ GDPR compliant with data processing agreements</li>
+                        <li>✓ Automatic sensitive data detection</li>
+                        <li>✓ Audit logging for all API calls</li>
+                        <li>✓ TLS 1.3 encryption in transit</li>
+                    </ul>
+                </div>
+                
+                <h3>Multi-IDE Support</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IDE</th>
+                            <th>Support Level</th>
+                            <th>Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>VS Code</td>
+                            <td>Full</td>
+                            <td>Chat, completions, actions</td>
+                        </tr>
+                        <tr>
+                            <td>JetBrains (IntelliJ, PyCharm)</td>
+                            <td>Full</td>
+                            <td>Chat, completions, actions</td>
+                        </tr>
+                        <tr>
+                            <td>Visual Studio</td>
+                            <td>Full</td>
+                            <td>Chat, completions, actions</td>
+                        </tr>
+                        <tr>
+                            <td>Neovim</td>
+                            <td>Partial</td>
+                            <td>Completions via plugin</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Agent SDKs Section -->
+            <section id="agents">
+                <h2>Agent SDKs & Frameworks</h2>
+                
+                <div class="subsection">
+                    <h3>Overview</h3>
+                    <p>Agent SDKs provide frameworks for building autonomous AI systems capable of reasoning, planning, and executing multi-step tasks. These are enterprise-grade tools for production AI automation.</p>
+                </div>
+                
+                <h3>Major Agent Frameworks</h3>
+                
+                <h4>1. Microsoft Foundry Agent Framework</h4>
+                <div class="subsection">
+                    <p><strong>Best For:</strong> Enterprise Azure integration, multi-model support</p>
+                    <p><strong>Languages:</strong> .NET, Python, JavaScript</p>
+                    
+                    <h5>Key Features:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>Native Azure service integration</li>
+                        <li>Pluggable model providers</li>
+                        <li>Built-in error recovery</li>
+                        <li>Comprehensive telemetry</li>
+                        <li>RBAC and managed identities</li>
+                    </ul>
+                </div>
+                
+                <h4>2. OpenAI Assistants API</h4>
+                <div class="subsection">
+                    <p><strong>Best For:</strong> Rapid agent development, cloud-native</p>
+                    <p><strong>Access:</strong> API only, managed by OpenAI</p>
+                    
+                    <h5>Tool Types:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>Code Interpreter (Python execution)</li>
+                        <li>File Search (Vector search)</li>
+                        <li>Function Calling (Custom APIs)</li>
+                        <li>Retrieval (Document indexing)</li>
+                    </ul>
+                </div>
+                
+                <h4>3. Model Context Protocol (MCP)</h4>
+                <div class="subsection">
+                    <p><strong>Best For:</strong> Tool standardization, microservices architecture</p>
+                    <p><strong>Status:</strong> Open standard (Anthropic)</p>
+                    
+                    <h5>Protocol Features:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>Standardized tool interface (JSON-RPC)</li>
+                        <li>Resource management</li>
+                        <li>Prompt templates</li>
+                        <li>Sampling capabilities</li>
+                        <li>Support for stdio or HTTP transport</li>
+                    </ul>
+                </div>
+                
+                <h4>4. LangChain / LangGraph</h4>
+                <div class="subsection">
+                    <p><strong>Best For:</strong> Flexible custom agents, multi-model workflows</p>
+                    <p><strong>License:</strong> Open source (MIT)</p>
+                    
+                    <h5>Capabilities:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>Agent orchestration framework</li>
+                        <li>State machine workflows (LangGraph)</li>
+                        <li>Memory management</li>
+                        <li>Tool composition</li>
+                        <li>Multi-model support</li>
+                    </ul>
+                </div>
+                
+                <h4>5. Anthropic Claude SDK</h4>
+                <div class="subsection">
+                    <p><strong>Best For:</strong> Claude-native applications, advanced reasoning</p>
+                    <p><strong>Languages:</strong> Python, JavaScript/TypeScript, .NET</p>
+                    
+                    <h5>Features:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>Tool use implementation</li>
+                        <li>Extended thinking for complex tasks</li>
+                        <li>Vision and file handling</li>
+                        <li>Batch processing API</li>
+                        <li>Prompt caching</li>
+                    </ul>
+                </div>
+                
+                <h3>Agent Architecture Pattern</h3>
+                <div class="architecture-diagram"><pre>
+┌────────────────────────────────────────┐
+│  User Application / Chat Interface      │
+├────────────────────────────────────────┤
+│  Agent Framework (SDK)                  │
+│  ├─ Conversation Loop                  │
+│  ├─ Tool Routing                       │
+│  ├─ State Management                   │
+│  └─ Error Handling                     │
+├────────────────────────────────────────┤
+│  LLM Model Provider                     │
+│  ├─ Azure OpenAI                        │
+│  ├─ Claude                              │
+│  └─ Other Models                        │
+├────────────────────────────────────────┤
+│  Tool/Function Registry (MCP)           │
+│  ├─ Internal Tools                      │
+│  ├─ External APIs                       │
+│  └─ Data Sources                        │
+├────────────────────────────────────────┤
+│  Execution Layer                        │
+│  ├─ Database Queries                    │
+│  ├─ API Calls                           │
+│  └─ Business Logic                      │
+└────────────────────────────────────────┘
+                </pre></div>
+                
+                <h3>SDK Comparison Matrix</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Foundry</th>
+                            <th>OpenAI API</th>
+                            <th>Claude SDK</th>
+                            <th>LangChain</th>
+                            <th>MCP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tool Calling</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Turn</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>File Handling</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>⚠</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Model</td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>⚠</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>Self-Hosted</td>
+                            <td>⚠</td>
+                            <td>✗</td>
+                            <td>⚠</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>Enterprise Support</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>⚠</td>
+                            <td>✓</td>
+                            <td>⚠</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Comparison Section -->
+            <section id="comparison">
+                <h2>Tool Comparison & Selection</h2>
+                
+                <h3>Use Case: Customer Support Agent</h3>
+                <div class="use-case-section">
+                    <p><strong>Requirements:</strong> Real-time tool execution, multi-language, on-premises capable</p>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Solution</th>
+                            <th>Suitability</th>
+                            <th>Key Factors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Claude + VS Code</td>
+                            <td>⭐⭐☆☆☆</td>
+                            <td>Not designed for runtime agents</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub Copilot</td>
+                            <td>⭐⭐☆☆☆</td>
+                            <td>Developer tool, not production agent</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Foundry</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td><strong>Best choice:</strong> Enterprise integration, tool support</td>
+                        </tr>
+                        <tr>
+                            <td>OpenAI Assistants</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>Good, but cloud-only, API costs</td>
+                        </tr>
+                        <tr>
+                            <td>LangChain + Claude</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>Flexible, good for custom needs</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Use Case: Developer Productivity (IDE)</h3>
+                <div class="use-case-section">
+                    <p><strong>Requirements:</strong> Fast suggestions, minimal friction, low learning curve</p>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Solution</th>
+                            <th>Suitability</th>
+                            <th>Key Factors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Claude + VS Code</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td><strong>Best-in-class</strong> IDE integration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GitHub Copilot</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td><strong>Best-in-class</strong> multi-IDE support</td>
+                        </tr>
+                        <tr>
+                            <td>Agent SDKs</td>
+                            <td>⭐☆☆☆☆</td>
+                            <td>Over-engineered for this use case</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Use Case: Autonomous Workflow Automation</h3>
+                <div class="use-case-section">
+                    <p><strong>Requirements:</strong> Reasoning, state management, error recovery, scheduling</p>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Solution</th>
+                            <th>Suitability</th>
+                            <th>Key Factors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Claude + VS Code</td>
+                            <td>⭐☆☆☆☆</td>
+                            <td>Not applicable</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub Copilot</td>
+                            <td>⭐☆☆☆☆</td>
+                            <td>Not applicable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Foundry</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td><strong>Enterprise standard</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>LangChain + LangGraph</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td><strong>Maximum flexibility</strong></td>
+                        </tr>
+                        <tr>
+                            <td>OpenAI Assistants</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>Good, mature platform</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Deployment Section -->
+            <section id="deployment">
+                <h2>Deployment & Infrastructure</h2>
+                
+                <h3>Cloud vs On-Premises</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Cloud (Azure/OpenAI)</th>
+                            <th>On-Premises</th>
+                            <th>Hybrid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Latency</td>
+                            <td>50-200ms</td>
+                            <td>1-10ms</td>
+                            <td>Region-dependent</td>
+                        </tr>
+                        <tr>
+                            <td>Security</td>
+                            <td>Managed, SOC 2</td>
+                            <td>Full control</td>
+                            <td>Segmented</td>
+                        </tr>
+                        <tr>
+                            <td>Scaling</td>
+                            <td>Automatic</td>
+                            <td>Manual</td>
+                            <td>Dynamic</td>
+                        </tr>
+                        <tr>
+                            <td>Cost (100 users)</td>
+                            <td>$1900-3900/mo</td>
+                            <td>$50K-100K upfront</td>
+                            <td>$1000-2000/mo</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Performance Optimization</h3>
+                <div class="subsection">
+                    <h4>Model Selection Strategy</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Use smaller models (Claude 3 Haiku) for routine tasks: 70% cost reduction</li>
+                        <li>Reserve large models (Claude 3 Opus) for complex reasoning: 5% of requests</li>
+                        <li>Implement early exit patterns: Skip AI when deterministic solution exists</li>
+                    </ul>
+                    
+                    <h4>Batching & Caching</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Batch similar requests together: 30-50% latency reduction</li>
+                        <li>Implement prompt caching: 90% cost reduction on repeated contexts</li>
+                        <li>Cache tool results: Avoid redundant API calls</li>
+                    </ul>
+                </div>
+                
+                <h3>Data Residency & Compliance</h3>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>Anonymize PII before cloud processing</li>
+                    <li>Implement data classification routing</li>
+                    <li>Use Azure Key Vault for secrets management</li>
+                    <li>Enable comprehensive audit logging</li>
+                    <li>Encrypt data in transit and at rest</li>
+                </ul>
+                
+                <h3>Security Best Practices</h3>
+                <div class="subsection">
+                    <h4>Authentication</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Use managed identities for Azure resources</li>
+                        <li>Implement RBAC for team access</li>
+                        <li>Enable MFA for sensitive operations</li>
+                        <li>Use service principals for automation</li>
+                    </ul>
+                    
+                    <h4>API Security</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Rotate API keys regularly (30-90 days)</li>
+                        <li>Use API gateways with rate limiting</li>
+                        <li>Implement request signing and validation</li>
+                        <li>Monitor for suspicious patterns</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Roadmap Section -->
+            <section id="roadmap">
+                <h2>Implementation Roadmap</h2>
+                
+                <h3>Phase 1: Foundation (Months 1-2)</h3>
+                <div class="subsection">
+                    <ul class="checklist">
+                        <li class="">Pilot Claude + VS Code with dev team (5-10 developers)</li>
+                        <li class="">Evaluate GitHub Copilot Business subscription</li>
+                        <li class="">Establish baseline metrics (code velocity, quality)</li>
+                        <li class="">Security & compliance review with IT</li>
+                        <li class="">Create procurement request for licenses</li>
+                    </ul>
+                </div>
+                
+                <h3>Phase 2: Advanced Integration (Months 3-4)</h3>
+                <div class="subsection">
+                    <ul class="checklist">
+                        <li class="">Evaluate Agent SDKs for priority use case</li>
+                        <li class="">Design MCP integration layer for enterprise APIs</li>
+                        <li class="">Build proof-of-concepts (support chatbot, code review agent)</li>
+                        <li class="">Establish governance policies and guidelines</li>
+                        <li class="">Train technical leads</li>
+                    </ul>
+                </div>
+                
+                <h3>Phase 3: Production Deployment (Months 5-6)</h3>
+                <div class="subsection">
+                    <ul class="checklist">
+                        <li class="">Deploy first production agent (customer support priority)</li>
+                        <li class="">Implement monitoring & observability</li>
+                        <li class="">Establish cost management practices</li>
+                        <li class="">Train operations team</li>
+                        <li class="">Document runbooks and troubleshooting</li>
+                    </ul>
+                </div>
+                
+                <h3>Phase 4: Scale & Optimize (Months 7+)</h3>
+                <div class="subsection">
+                    <ul class="checklist">
+                        <li class="">Expand agent network to 5+ production agents</li>
+                        <li class="">Implement advanced performance tuning</li>
+                        <li class="">Continuous model evaluation & updates</li>
+                        <li class="">ROI analysis and business case refinement</li>
+                        <li class="">Enterprise-wide rollout plan</li>
+                    </ul>
+                </div>
+                
+                <h3>Expected Timeline & Budget</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Duration</th>
+                            <th>Team</th>
+                            <th>Budget</th>
+                            <th>Expected ROI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Foundation</td>
+                            <td>2 months</td>
+                            <td>2-3 engineers</td>
+                            <td>$5K-10K</td>
+                            <td>Baseline established</td>
+                        </tr>
+                        <tr>
+                            <td>Integration</td>
+                            <td>2 months</td>
+                            <td>3-5 engineers</td>
+                            <td>$20K-30K</td>
+                            <td>POCs validated</td>
+                        </tr>
+                        <tr>
+                            <td>Production</td>
+                            <td>2 months</td>
+                            <td>5-8 engineers</td>
+                            <td>$50K-100K</td>
+                            <td>20-30% productivity gain</td>
+                        </tr>
+                        <tr>
+                            <td>Scale</td>
+                            <td>Ongoing</td>
+                            <td>Maintained team</td>
+                            <td>$100K+/year</td>
+                            <td>40-50% productivity gain</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        
+        <footer>
+            <p><strong>Enterprise GenAI Tooling & Platform Evaluation</strong> | Version 1.0 | May 2026</p>
+            <p>Classification: Internal Use | Maintained by: AI Engineering Team</p>
+            <p>For questions or feedback, contact the GenAI Platform team</p>
+        </footer>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Hide all nav links active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+            
+            // Highlight corresponding nav link
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

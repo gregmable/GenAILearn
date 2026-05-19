@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "route": "/phase1-5.html",
+      "redirect": "/phase4-7.html",
+      "statusCode": 301
+    }
+  ]
+}

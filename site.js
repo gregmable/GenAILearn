@@ -2,6 +2,7 @@
   // ── Storage keys ──────────────────────────────────────────────────────
   var storageKey = "genai-learning-quiz-progress";
   var visitedKey  = "genai-learning-visited";
+  var sidebarStateKey = "genai-learning-sidebar-collapsed";
   var authKey = "genai-learning-auth";
   var sessionKey = "genai-learning-session";
   var QUIZ_PER_SET = 5; // randomly drawn from the full bank each attempt
@@ -78,7 +79,6 @@
     { file: "phase1-2.html", label: "1.2 Large Language Models (LLMs) & Architecture", phase: "phase1" },
     { file: "phase1-3.html", label: "1.3 Prompt Engineering Fundamentals", phase: "phase1" },
     { file: "phase1-4.html", label: "1.4 Retrieval-Augmented Generation (RAG)", phase: "phase1" },
-    { file: "phase1-5.html", label: "1.5 AI Product Portfolio Overview", phase: "phase1" },
     { file: "phase1-6.html", label: "1.6 AI Ethics, Governance & Responsible AI", phase: "phase1" },
     { file: "phase1-quiz.html", label: "Phase 1 Knowledge Quiz", quizKey: "phase1", phase: "phase1" },
     { file: "phase2-1.html", label: "2.1 Building Production RAG Pipelines", phase: "phase2" },
@@ -102,6 +102,7 @@
     { file: "phase4-4.html", label: "4.4 Pega MCP, AgentX & Orchestration", phase: "phase4" },
     { file: "phase4-5.html", label: "4.5 Pega Architecture & Integration Patterns", phase: "phase4" },
     { file: "phase4-6.html", label: "4.6 Pega Operations, Governance & Deployment", phase: "phase4" },
+    { file: "phase4-7.html", label: "4.7 AI Product Portfolio Overview", phase: "phase4" },
     { file: "phase4-quiz.html", label: "Phase 4 Knowledge Quiz", quizKey: "phase4", phase: "phase4" }
   ];
 
@@ -479,7 +480,7 @@
       "phase1-2.html": "When comparing models, teams should run the same benchmark prompts across options and evaluate not only answer quality, but also latency, consistency, and cost at realistic token volumes. This creates a decision record that can be reused when models are upgraded or replaced.",
       "phase1-3.html": "Prompt quality improves fastest when teams maintain a small prompt library with version history, expected outputs, and failure examples. Treating prompts as testable assets helps reduce regressions when system instructions, model versions, or retrieval context changes.",
       "phase1-4.html": "Mature RAG implementations also define fallback behavior for low-confidence retrieval, such as asking a clarifying question or escalating to a human. This prevents confident but weakly grounded responses and improves trust in high-stakes workflows.",
-      "phase1-5.html": "Product landscape decisions become simpler when each capability is mapped to a specific lifecycle stage: discover, design, build, run, and optimize. This avoids overloading one tool and creates clearer ownership for enablement, governance, and support.",
+      "phase4-7.html": "Product landscape decisions become simpler when each capability is mapped to a specific lifecycle stage: discover, design, build, run, and optimize. This avoids overloading one tool and creates clearer ownership for enablement, governance, and support.",
       "phase1-6.html": "An effective governance baseline includes risk classification, red-team testing cadence, approval checkpoints, and evidence retention. These controls should be proportional to impact, so low-risk assistants remain fast while high-impact workflows remain auditable and safe.",
       "phase2-1.html": "Operationally, teams should plan index refresh frequency and source ownership from day one. RAG quality often degrades because content freshness and metadata governance are treated as afterthoughts rather than first-class parts of the architecture.",
       "phase2-2.html": "In production, protocol choices should be paired with explicit authorization boundaries so agents can only invoke approved tools for their role. This combination of protocol standardization and least privilege is what makes multi-agent systems maintainable at scale.",
@@ -540,25 +541,45 @@
     }
   }
 
-  // ── 8. Mobile sidebar toggle ───────────────────────────────────────────
+  // ── 8. Sidebar panel toggle (desktop + mobile) ────────────────────────
   function setupMobileSidebar() {
     var sidebar = document.querySelector(".sidebar-card");
     if (!sidebar) return;
+    var layout = sidebar.closest(".page-layout");
+
+    function getSidebarPrefKey() {
+      return getProgressStorageKey(sidebarStateKey);
+    }
+
+    function applyCollapsed(collapsed, persist) {
+      sidebar.classList.toggle("sidebar-collapsed", collapsed);
+      if (layout) layout.classList.toggle("sidebar-panel-collapsed", collapsed);
+      toggle.setAttribute("aria-expanded", String(!collapsed));
+      toggle.setAttribute("aria-label", collapsed ? "Expand left panel" : "Collapse left panel");
+      var label = toggle.querySelector(".sidebar-toggle-label");
+      if (label) label.textContent = collapsed ? "Show Panel" : "Hide Panel";
+      if (persist) {
+        try { localStorage.setItem(getSidebarPrefKey(), collapsed ? "1" : "0"); } catch (e) {}
+      }
+    }
+
     var toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "sidebar-toggle";
-    toggle.innerHTML = "<span class=\"sidebar-toggle-icon\" aria-hidden=\"true\">&#9776;</span> Directory";
+    toggle.innerHTML = "<span class=\"sidebar-toggle-icon\" aria-hidden=\"true\">&#9776;</span><span class=\"sidebar-toggle-label\">Hide Panel</span>";
     toggle.setAttribute("aria-expanded", "true");
     toggle.addEventListener("click", function () {
-      var collapsed = sidebar.classList.toggle("sidebar-collapsed");
-      toggle.setAttribute("aria-expanded", String(!collapsed));
+      var collapsed = !sidebar.classList.contains("sidebar-collapsed");
+      applyCollapsed(collapsed, true);
     });
-    var progress = sidebar.querySelector(".sidebar-progress");
-    if (progress && progress.nextSibling) {
-      sidebar.insertBefore(toggle, progress.nextSibling);
-    } else {
-      sidebar.insertBefore(toggle, sidebar.firstChild);
-    }
+
+    sidebar.insertBefore(toggle, sidebar.firstChild);
+
+    var shouldCollapse = false;
+    try {
+      shouldCollapse = localStorage.getItem(getSidebarPrefKey()) === "1";
+    } catch (e) {}
+    applyCollapsed(shouldCollapse, false);
   }
 
   // ── Quiz link locking ──────────────────────────────────────────────────
