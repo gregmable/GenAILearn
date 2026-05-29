@@ -35,6 +35,18 @@
         "clientSecret": "9672C0DCDF4C2A8C6D442590B59935D6",
         "scopes": []
       }
+    },
+    "fraud-investigation-mcp": {
+      "type": "streamable-http",
+      "url": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/app/fraud-investigation/api/service/v1/mcp/O91ILP-FraudInv-Work!Fraud",
+      "auth": {
+        "type": "oauth2",
+        "grantType": "client_credentials",
+        "tokenUrl": "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/PRRestService/oauth2/v1/token",
+        "clientId": "72957161055032363202",
+        "clientSecret": "9672C0DCDF4C2A8C6D442590B59935D6",
+        "scopes": []
+      }
     }
   }
 }

@@ -2,6 +2,8 @@ param(
     [switch]$Raw
 )
 
+$sessionFile = ".\mcp_session.json"
+
 $clientId = "72957161055032363202"
 $clientSecret = "9672C0DCDF4C2A8C6D442590B59935D6"
 $tokenUrl = "https://lab-16330-us-east-1.internal.pegalabs.io/prweb/PRRestService/oauth2/v1/token"
@@ -52,6 +54,24 @@ if ([string]::IsNullOrWhiteSpace($mcpSessionId)) {
 }
 $headers["mcp-session-id"] = $mcpSessionId
 Write-Output "MCP Session ID: $mcpSessionId"
+
+# Persist session details so follow-up calls can reuse the same session context.
+$jsessionId = $null
+foreach ($cookie in $session.Cookies.GetCookies($mcpUrl)) {
+    if ($cookie.Name -eq "JSESSIONID") {
+        $jsessionId = $cookie.Value
+        break
+    }
+}
+
+$sessionInfo = @{
+    mcpSessionId = $mcpSessionId
+    jsessionId = $jsessionId
+    token = $token
+    timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+}
+$sessionInfo | ConvertTo-Json | Set-Content -Path $sessionFile
+Write-Output "Session saved to $sessionFile"
 
 # Call notifications/initialized
 $notifPayload = @{
