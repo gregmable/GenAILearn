@@ -317,10 +317,38 @@
     });
   }
 
+  function renderAuthQuickLink() {
+    var nav = document.querySelector("nav");
+    if (!nav) return;
+    var existing = nav.querySelector("[data-auth-quick-link]");
+    if (existing) existing.remove();
+
+    var link = document.createElement("a");
+    link.className = "auth-quick-link";
+    link.setAttribute("data-auth-quick-link", "true");
+
+    if (currentUser && currentUser.profile) {
+      link.href = "#";
+      link.textContent = "Logout";
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        clearSession();
+        redirectToLogin();
+      });
+    } else {
+      link.href = "login.html";
+      link.textContent = "Sign In";
+    }
+
+    nav.appendChild(link);
+  }
+
   function enforceAuth() {
     if (currentFileName === "login.html") {
+      currentUser = getActiveUserRecord();
       renderStorageWarning();
       setupAuthPage();
+      renderAuthQuickLink();
       return false;
     }
     currentUser = getActiveUserRecord();
@@ -835,6 +863,7 @@
   markPageVisited();
   setupNavHighlight();
   setupAccountControls();
+  renderAuthQuickLink();
   renderUserSummary();
   enhanceTopicGuide();
   renderScrollBar();
