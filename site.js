@@ -300,47 +300,116 @@
     });
   }
 
-  function setupAccountControls() {
-    if (!currentUser || !currentUser.profile) return;
-    var navLinks = document.querySelector(".nav-links");
-    if (!navLinks) return;
-    var accountLi = document.createElement("li");
-    var displayName = currentUser.profile.displayName || currentUser.key;
-    accountLi.innerHTML = "<a href=\"#\" data-auth-logout=\"true\">" + displayName + " (Logout)</a>";
-    navLinks.appendChild(accountLi);
-    var logoutLink = accountLi.querySelector("[data-auth-logout]");
-    if (!logoutLink) return;
-    logoutLink.addEventListener("click", function (event) {
-      event.preventDefault();
-      clearSession();
-      redirectToLogin();
-    });
+  function escapeHtml(str) {
+    return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 
-  function renderAuthQuickLink() {
+  // kept as no-op; profile icon (renderNavProfile) handles all auth nav UI
+  function setupAccountControls() {}
+
+  function renderNavProfile() {
     var nav = document.querySelector("nav");
     if (!nav) return;
-    var existing = nav.querySelector("[data-auth-quick-link]");
+    var existing = nav.querySelector("[data-nav-profile]");
     if (existing) existing.remove();
 
-    var link = document.createElement("a");
-    link.className = "auth-quick-link";
-    link.setAttribute("data-auth-quick-link", "true");
+    var isLoggedIn = !!(currentUser && currentUser.profile);
+    var displayName = isLoggedIn ? (currentUser.profile.displayName || currentUser.key) : "";
+    var iconTitle = isLoggedIn ? ("Signed in as " + displayName) : "Sign In";
 
-    if (currentUser && currentUser.profile) {
-      link.href = "#";
-      link.textContent = "Logout";
-      link.addEventListener("click", function (event) {
-        event.preventDefault();
+    var wrapper = document.createElement("div");
+    wrapper.className = "nav-profile";
+    wrapper.setAttribute("data-nav-profile", "true");
+    wrapper.innerHTML =
+      "<button class=\"nav-profile-btn\" title=\"" + escapeHtml(iconTitle) + "\" aria-label=\"" + escapeHtml(iconTitle) + "\" aria-expanded=\"false\">"
+      + "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M12 14c-5.33 0-8 2.39-8 4v1h16v-1c0-1.61-2.67-4-8-4z\"/></svg>"
+      + "</button>"
+      + "<div class=\"nav-profile-dropdown\" hidden>"
+      + (isLoggedIn
+          ? "<div class=\"nav-profile-name\">" + escapeHtml(displayName) + "</div>"
+            + "<a class=\"nav-profile-item\" href=\"profile.html\">Profile &amp; Password</a>"
+            + "<button class=\"nav-profile-item nav-profile-signout\" type=\"button\">Sign Out</button>"
+          : "<div class=\"nav-profile-name\">Not signed in</div>"
+            + "<a class=\"nav-profile-item\" href=\"login.html\">Sign In &rarr;</a>")
+      + "</div>";
+
+    var btn = wrapper.querySelector(".nav-profile-btn");
+    var dropdown = wrapper.querySelector(".nav-profile-dropdown");
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = !dropdown.hidden;
+      dropdown.hidden = open;
+      btn.setAttribute("aria-expanded", String(!open));
+    });
+
+    var signOutBtn = wrapper.querySelector(".nav-profile-signout");
+    if (signOutBtn) {
+      signOutBtn.addEventListener("click", function () {
         clearSession();
         redirectToLogin();
       });
-    } else {
-      link.href = "login.html";
-      link.textContent = "Sign In";
     }
 
-    nav.appendChild(link);
+    document.addEventListener("click", function () {
+      if (!dropdown.hidden) {
+        dropdown.hidden = true;
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    nav.appendChild(wrapper);
+  }
+
+  function setupProfilePage() {
+    if (currentFileName !== "profile.html") return;
+    var nameEl = document.querySelector("[data-profile-name]");
+    if (nameEl) nameEl.textContent = currentUser.profile.displayName || currentUser.key;
+
+    var form = document.querySelector("[data-profile-form]");
+    if (!form) return;
+    var currentPassEl = form.querySelector("[data-profile-current-pass]");
+    var newPassEl     = form.querySelector("[data-profile-new-pass]");
+    var confirmPassEl = form.querySelector("[data-profile-confirm-pass]");
+    var errorEl       = form.querySelector("[data-profile-error]");
+    var successEl     = form.querySelector("[data-profile-success]");
+
+    function showError(msg) {
+      if (errorEl) { errorEl.textContent = msg; errorEl.hidden = !msg; }
+      if (successEl) successEl.hidden = true;
+    }
+    function showSuccess(msg) {
+      if (successEl) { successEl.textContent = msg; successEl.hidden = false; }
+      if (errorEl) errorEl.hidden = true;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var currentPass = currentPassEl ? currentPassEl.value : "";
+      var newPass     = newPassEl     ? newPassEl.value.trim()     : "";
+      var confirmPass = confirmPassEl ? confirmPassEl.value        : "";
+      if (currentPass !== currentUser.profile.password) {
+        showError("Current password is incorrect."); return;
+      }
+      if (!newPass) { showError("New password cannot be empty."); return; }
+      if (newPass !== confirmPass) { showError("New passwords do not match."); return; }
+      var store = currentUser.store;
+      store.users[currentUser.key].password = newPass;
+      saveAuthStore(store);
+      currentUser.profile.password = newPass;
+      showSuccess("Password updated successfully.");
+      if (currentPassEl) currentPassEl.value = "";
+      if (newPassEl)     newPassEl.value = "";
+      if (confirmPassEl) confirmPassEl.value = "";
+    });
+
+    var logoutBtn = document.querySelector("[data-profile-logout]");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", function () {
+        clearSession();
+        redirectToLogin();
+      });
+    }
   }
 
   function enforceAuth() {
@@ -348,7 +417,7 @@
       currentUser = getActiveUserRecord();
       renderStorageWarning();
       setupAuthPage();
-      renderAuthQuickLink();
+      renderNavProfile();
       return false;
     }
     currentUser = getActiveUserRecord();
@@ -863,7 +932,8 @@
   markPageVisited();
   setupNavHighlight();
   setupAccountControls();
-  renderAuthQuickLink();
+  renderNavProfile();
+  setupProfilePage();
   renderUserSummary();
   enhanceTopicGuide();
   renderScrollBar();

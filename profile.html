@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | GenAI Learning Path</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo"><img src="assets/pega-logo.svg" alt="Pega GenAI Learning Path" /></div>
+    <a href="index.html" style="color:#fff;text-decoration:none;">GenAI Learning Path</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Overview</a></li>
+    <li><a href="index.html#phase1">Phase 1</a></li>
+    <li><a href="index.html#phase2">Phase 2</a></li>
+    <li><a href="index.html#phase3">Phase 3</a></li>
+    <li><a href="index.html#phase4">Phase 4</a></li>
+  </ul>
+</nav>
+<main class="page-main">
+  <div class="container">
+    <div class="content-card auth-card">
+      <div class="eyebrow">Account</div>
+      <h2>Profile</h2>
+      <p>Signed in as <strong data-profile-name></strong></p>
+
+      <hr style="margin: 1.25rem 0; border: none; border-top: 1px solid var(--pega-border);" />
+
+      <h3 style="margin: 0 0 0.75rem; font-size: 1rem; font-weight: 600;">Change Password</h3>
+      <form data-profile-form class="auth-form">
+        <label class="auth-label" for="profile-current-pass">Current Password</label>
+        <input id="profile-current-pass" data-profile-current-pass class="auth-input" type="password" autocomplete="current-password" required />
+
+        <label class="auth-label" for="profile-new-pass" style="margin-top:0.8rem;">New Password</label>
+        <input id="profile-new-pass" data-profile-new-pass class="auth-input" type="password" autocomplete="new-password" required />
+
+        <label class="auth-label" for="profile-confirm-pass" style="margin-top:0.8rem;">Confirm New Password</label>
+        <input id="profile-confirm-pass" data-profile-confirm-pass class="auth-input" type="password" autocomplete="new-password" required />
+
+        <p data-profile-error class="auth-error" hidden></p>
+        <p data-profile-success class="auth-success" hidden></p>
+
+        <button type="submit" class="btn btn-primary" style="margin-top:0.9rem;">Update Password</button>
+      </form>
+
+      <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--pega-border);" />
+      <button data-profile-logout type="button" class="btn btn-outline">Sign Out</button>
+    </div>
+  </div>
+</main>
+<footer class="page-shell-footer">
+  <strong>GenAI Learning Phases: Foundation to Production Readiness</strong><br>
+  Pega Systems &middot; May 2026 &middot; Multi-page learning experience<br>
+  <span style="margin-top:0.5rem;display:block;">Internal use only &mdash; for questions contact the GenAI CoE Practice Lead</span>
+</footer>
+</body>
+</html>
