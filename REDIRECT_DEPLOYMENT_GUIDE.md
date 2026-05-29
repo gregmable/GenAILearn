@@ -12,36 +12,11 @@ This project moved:
 - Netlify-style: `_redirects`
 - Vercel: `vercel.json`
 - Azure Static Web Apps: `staticwebapp.config.json`
-- Firebase Hosting (Google Cloud): `firebase.json`
 - Client-side fallback: `phase1-5.html` (meta/js redirect)
 
 ## Google Cloud Platform
 
-### 1) Firebase Hosting (recommended for static sites)
-
-Already configured in `firebase.json`:
-
-```json
-{
-  "hosting": {
-    "redirects": [
-      {
-        "source": "/phase1-5.html",
-        "destination": "/phase4-7.html",
-        "type": 301
-      }
-    ]
-  }
-}
-```
-
-Deploy:
-
-```bash
-firebase deploy --only hosting
-```
-
-### 2) App Engine (Standard/Flexible)
+### 1) App Engine (Standard/Flexible)
 
 If you deploy behind App Engine routing, add a redirect handler in `app.yaml`.
 
@@ -62,7 +37,7 @@ Notes:
 - App Engine redirect options vary by runtime and serving model.
 - If you serve via custom app/server code, do redirect in app middleware/router instead.
 
-### 3) Cloud Storage + Cloud CDN / Load Balancer
+### 2) Cloud Storage + Cloud CDN / Load Balancer
 
 GCS static website hosting does not natively support path-level 301 rules like this.
 Use one of these approaches:
