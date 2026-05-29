@@ -236,6 +236,8 @@
 .next-trail-copy { color: var(--pega-muted); font-size: 0.8rem; }
 .next-trail-actions { display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap; }
 .next-trail-link.locked-link { opacity: 0.55; cursor: not-allowed; }
+.storage-warning { margin: 0 0 1rem; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid rgba(179, 38, 30, 0.35); background: rgba(179, 38, 30, 0.08); color: #7a1b16; font-size: 0.82rem; line-height: 1.5; }
+.storage-warning strong { display: block; margin-bottom: 0.2rem; color: #5e1511; }
 /* ── Reading progress bar ──────────────────────────────────────────── */
 .reading-progress-bar { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, var(--pega-orange), var(--pega-sky)); z-index: 2000; transition: width 0.1s linear; pointer-events: none; border-radius: 0 2px 2px 0; }
 /* ── Back-to-top ───────────────────────────────────────────────────── */

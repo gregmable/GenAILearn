@@ -7,6 +7,7 @@
   var QUIZ_PER_SET = 5; // randomly drawn from the full bank each attempt
   var currentFileName = getCurrentFileName();
   var currentUser = null;
+  var storageWarningShown = false;
 
   // ── Quiz dependency chain ──────────────────────────────────────────────
   var quizOrder = ["phase1", "phase2", "phase3", "phase4"];
@@ -181,6 +182,29 @@
     }
   }
 
+  function isStorageAvailable() {
+    try {
+      var probe = "genai-storage-probe";
+      localStorage.setItem(probe, "1");
+      localStorage.removeItem(probe);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function renderStorageWarning() {
+    if (storageWarningShown || isStorageAvailable()) return;
+    storageWarningShown = true;
+    var container = document.querySelector(".page-main .container") || document.querySelector(".container");
+    if (!container) return;
+
+    var warning = document.createElement("div");
+    warning.className = "storage-warning";
+    warning.innerHTML = "<strong>Storage is blocked in this browser context.</strong> Login and progress cannot be saved. If this page is inside an iframe, allow third-party storage/cookies or open in a full browser tab.";
+    container.insertBefore(warning, container.firstChild);
+  }
+
   function setupAuthPage() {
     var form = document.querySelector("[data-auth-form]");
     if (!form) return;
@@ -190,6 +214,15 @@
     var submitEl = form.querySelector("[data-auth-submit]");
     var returnTarget = readReturnTarget();
     var active = getActiveUserRecord();
+
+    if (!isStorageAvailable()) {
+      if (submitEl) submitEl.disabled = true;
+      if (errorEl) {
+        errorEl.textContent = "Browser storage is blocked. Sign in is disabled because progress cannot be saved.";
+        errorEl.hidden = false;
+      }
+      return;
+    }
 
     if (active && nameEl && !nameEl.value) {
       nameEl.value = active.profile.displayName || active.key;
@@ -250,6 +283,7 @@
 
   function enforceAuth() {
     if (currentFileName === "login.html") {
+      renderStorageWarning();
       setupAuthPage();
       return false;
     }
@@ -262,6 +296,8 @@
   }
 
   if (!enforceAuth()) return;
+
+  renderStorageWarning();
 
   // ── Quiz pass state ────────────────────────────────────────────────────
   function loadState() {
