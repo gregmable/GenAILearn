@@ -4,6 +4,7 @@
   var visitedKey  = "genai-learning-visited";
   var authKey = "genai-learning-auth";
   var sessionKey = "genai-learning-session";
+  var rememberMeKey = "genai-learning-remember-me";
   var QUIZ_PER_SET = 5; // randomly drawn from the full bank each attempt
   var currentFileName = getCurrentFileName();
   var currentUser = null;
@@ -135,18 +136,48 @@
     try { localStorage.setItem(authKey, JSON.stringify(store)); } catch (e) {}
   }
 
-  function loadSession() {
+  function parseSession(raw) {
     try {
-      var raw = localStorage.getItem(sessionKey);
       var data = raw ? JSON.parse(raw) : null;
-      return data && typeof data.user === "string" ? data : { user: "" };
+      return data && typeof data.user === "string" ? data : null;
     } catch (e) {
-      return { user: "" };
+      return null;
     }
   }
 
-  function saveSession(userName) {
-    try { localStorage.setItem(sessionKey, JSON.stringify({ user: userName || "" })); } catch (e) {}
+  function loadSession() {
+    var sessionScoped = null;
+    var remembered = null;
+    try { sessionScoped = parseSession(sessionStorage.getItem(sessionKey)); } catch (e) {}
+    if (sessionScoped) return sessionScoped;
+    try { remembered = parseSession(localStorage.getItem(sessionKey)); } catch (e) {}
+    return remembered || { user: "" };
+  }
+
+  function saveSession(userName, rememberMe) {
+    var payload = JSON.stringify({ user: userName || "" });
+    try {
+      if (rememberMe) {
+        localStorage.setItem(sessionKey, payload);
+        sessionStorage.removeItem(sessionKey);
+        localStorage.setItem(rememberMeKey, "1");
+      } else {
+        sessionStorage.setItem(sessionKey, payload);
+        localStorage.removeItem(sessionKey);
+        localStorage.setItem(rememberMeKey, "0");
+      }
+    } catch (e) {}
+  }
+
+  function clearSession() {
+    try {
+      localStorage.removeItem(sessionKey);
+      sessionStorage.removeItem(sessionKey);
+    } catch (e) {}
+  }
+
+  function loadRememberPreference() {
+    try { return localStorage.getItem(rememberMeKey) === "1"; } catch (e) { return false; }
   }
 
   function normalizeUserName(name) {
@@ -210,6 +241,7 @@
     if (!form) return;
     var nameEl = form.querySelector("[data-auth-name]");
     var passEl = form.querySelector("[data-auth-pass]");
+    var rememberEl = form.querySelector("[data-auth-remember]");
     var errorEl = form.querySelector("[data-auth-error]");
     var submitEl = form.querySelector("[data-auth-submit]");
     var returnTarget = readReturnTarget();
@@ -227,6 +259,9 @@
     if (active && nameEl && !nameEl.value) {
       nameEl.value = active.profile.displayName || active.key;
     }
+    if (rememberEl) {
+      rememberEl.checked = loadRememberPreference();
+    }
 
     function showError(msg) {
       if (!errorEl) return;
@@ -238,6 +273,7 @@
       event.preventDefault();
       var name = nameEl ? nameEl.value.trim() : "";
       var password = passEl ? passEl.value : "";
+      var rememberMe = !!(rememberEl && rememberEl.checked);
       var key = normalizeUserName(name);
       if (!name || !password || !key) {
         showError("Please enter both name and password.");
@@ -258,7 +294,7 @@
 
       store.lastUser = key;
       saveAuthStore(store);
-      saveSession(key);
+      saveSession(key, rememberMe);
       if (submitEl) submitEl.disabled = true;
       window.location.replace(returnTarget || "index.html");
     });
@@ -276,7 +312,7 @@
     if (!logoutLink) return;
     logoutLink.addEventListener("click", function (event) {
       event.preventDefault();
-      saveSession("");
+      clearSession();
       redirectToLogin();
     });
   }

@@ -289,6 +289,8 @@
 .auth-label { display: block; font-size: 0.78rem; color: var(--pega-muted); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.3rem; }
 .auth-input { width: 100%; padding: 0.65rem 0.75rem; border: 1px solid var(--pega-border); border-radius: 6px; font-size: 0.9rem; color: var(--pega-text); background: #fff; }
 .auth-input:focus { outline: none; border-color: var(--pega-blue); box-shadow: 0 0 0 3px rgba(0,87,168,0.12); }
+.auth-remember { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: var(--pega-muted); user-select: none; }
+.auth-remember input { width: 16px; height: 16px; accent-color: var(--pega-blue); }
 .auth-error { margin-top: 0.7rem; border: 1px solid rgba(179,38,30,0.35); background: rgba(179,38,30,0.08); color: #8a1d17; border-radius: 6px; padding: 0.55rem 0.7rem; font-size: 0.82rem; }
 
 /* ── Homepage user summary ─────────────────────────────────────────── */
